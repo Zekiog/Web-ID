@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../lib/firebase";
+import { checkRateLimit, incrementRateLimit, getRemainingRequests } from "../lib/rateLimit";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required").max(100),
@@ -55,11 +56,21 @@ export default function RequestServices() {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     setSubmitError("");
+
+    // Client-side rate limit check
+    if (!checkRateLimit()) {
+      setSubmitError("You have reached the daily submission limit of 100 requests. Please try again tomorrow.");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       await addDoc(collection(db, "quoteRequests"), {
         ...data,
         createdAt: serverTimestamp(),
       });
+      // Increment only after successful submission
+      incrementRateLimit();
       setSubmitSuccess(true);
       window.scrollTo(0, 0);
     } catch (err) {
@@ -103,6 +114,11 @@ export default function RequestServices() {
           Detail your localization requirements below. Our specialized AI models
           and expert linguists are ready to align with your global strategy.
         </p>
+        {getRemainingRequests() <= 10 && (
+          <div className="mt-sm p-3 bg-warning/10 border border-warning/20 rounded-md text-warning text-sm font-medium">
+            ⚠️ You have only {getRemainingRequests()} submission{getRemainingRequests() === 1 ? '' : 's'} remaining today.
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-xl">
