@@ -1,40 +1,215 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
-    }
-    
+
+    // ──────────────────────────────────────────────
+    // Utility Functions
+    // ──────────────────────────────────────────────
+
+    // Validate document ID format (alphanumeric + hyphen, 1-128 chars)
     function isValidId(id) {
-      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+      return id is string && id.size() > 0 && id.size() <= 128
+        && id.matches('^[a-zA-Z0-9_\\-]+$');
     }
-    
+
+    // Shorthand for incoming write data
     function incoming() {
       return request.resource.data;
     }
-    
+
+    // Shorthand for existing data (on reads/updates/deletes)
+    function existing() {
+      return resource.data;
+    }
+
+    // No HTML/script injection in string fields
+    function isSafeString(val) {
+      return !(val is string) || (
+        !val.matches('(?i)<script') &&
+        !val.matches('(?i)<iframe') &&
+        !val.matches('(?i)<object') &&
+        !val.matches('(?i)<embed') &&
+        !val.matches('(?i)javascript:') &&
+        !val.matches('(?i)on\\w+\\s*=')
+      );
+    }
+
+    // All string fields in the document must be safe
+    function allStringsSafe(doc) {
+      return doc.keys().filter(k => doc[k] is string)
+        .every(k => isSafeString(doc[k]));
+    }
+
+    // Validate email format
+    function isValidEmail(email) {
+      return email is string && email.size() <= 254
+        && email.matches('^[^@\\s]+@[^@\\s]+\\.[a-zA-Z]{2,}$');
+    }
+
+    // Document size under 1 MiB (Firestore limit)
+    function isWithinSizeLimit() {
+      return request.resource.size <= 1024 * 1024;
+    }
+
+    // ──────────────────────────────────────────────
+    // Rate Limiting Helpers
+    // ──────────────────────────────────────────────
+
+    // Max 100 writes per day per collection (baseline for quoteRequests)
+    function rateLimitRequests(collectionPath) {
+      // Count documents created in the last 24 hours
+      let recent = getAfter(
+        /databases/$(database)/documents/$(collectionPath),
+        100
+      );
+      return recent.filter(doc =>
+        doc.data.createdAt is timestamp
+        && doc.data.createdAt.toMillis() > request.time.toMillis() - 86400000
+      ).size() < 100;
+    }
+
+    // ──────────────────────────────────────────────
+    // Collection: quoteRequests (Public Form)
+    // ──────────────────────────────────────────────
+
     function isValidQuoteRequest() {
-      return incoming().keys().hasAll(['fullName', 'company', 'email', 'projectTitle', 'description', 'budget', 'contentType', 'estimatedWords', 'sourceLanguage', 'targetLanguages', 'services', 'preferredStartDate', 'deliveryDeadline', 'createdAt'])
-        && incoming().keys().size() == 14
-        && incoming().fullName is string && incoming().fullName.size() <= 100
-        && incoming().company is string && incoming().company.size() <= 150
-        && incoming().email is string && incoming().email.size() <= 200 && incoming().email.matches('^[^@]+@[^@]+\\.[a-zA-Z]{2,}$')
-        && incoming().projectTitle is string && incoming().projectTitle.size() <= 200
-        && incoming().description is string && incoming().description.size() <= 5000
-        && incoming().budget is string && incoming().budget.size() <= 50
-        && incoming().contentType is string && incoming().contentType.size() <= 50
-        && incoming().estimatedWords is number
-        && incoming().sourceLanguage is string && incoming().sourceLanguage.size() <= 50
-        && incoming().targetLanguages is string && incoming().targetLanguages.size() <= 500
-        && incoming().services is list && incoming().services.size() <= 10
-        && (incoming().services.size() == 0 || incoming().services[0] is string)
-        && incoming().preferredStartDate is string && incoming().preferredStartDate.size() <= 50
-        && incoming().deliveryDeadline is string && incoming().deliveryDeadline.size() <= 50
-        && incoming().createdAt == request.time;
+      let data = incoming();
+
+      // Required keyset: exactly 14 fields
+      let required = ['fullName', 'company', 'email', 'projectTitle',
+        'description', 'budget', 'contentType', 'estimatedWords',
+        'sourceLanguage', 'targetLanguages', 'services', 'preferredStartDate',
+        'deliveryDeadline', 'createdAt'];
+
+      return data.keys().hasAll(required)
+        && data.keys().size() == 14
+        // String fields with length limits
+        && data.fullName is string && data.fullName.size() >= 2 && data.fullName.size() <= 100
+        && data.company is string && data.company.size() <= 150
+        && isValidEmail(data.email)
+        && data.projectTitle is string && data.projectTitle.size() >= 2 && data.projectTitle.size() <= 200
+        && data.description is string && data.description.size() <= 5000
+        && data.budget is string && data.budget.size() <= 50
+        && data.contentType is string && data.contentType.size() <= 50
+        // Numeric field: must be non-negative integer
+        && data.estimatedWords is number && data.estimatedWords >= 0 && data.estimatedWords <= 10000000
+        && data.sourceLanguage is string && data.sourceLanguage.size() <= 50
+        && data.targetLanguages is string && data.targetLanguages.size() <= 500
+        // Services array: max 10 strings
+        && data.services is list && data.services.size() <= 10
+        && (data.services.size() == 0 || data.services[0] is string)
+        // Date strings
+        && data.preferredStartDate is string && data.preferredStartDate.size() <= 50
+        && data.deliveryDeadline is string && data.deliveryDeadline.size() <= 50
+        // Timestamp: must match request.time exactly (Firestore serverTimestamp)
+        && data.createdAt == request.time
+        // No injection attacks
+        && allStringsSafe(data);
     }
 
     match /quoteRequests/{requestId} {
-      allow create: if isValidId(requestId) && isValidQuoteRequest();
+      // Anyone can submit (public form)
+      allow create: if isValidId(requestId)
+        && isValidQuoteRequest()
+        && isWithinSizeLimit()
+        && rateLimitRequests('quoteRequests');
+
+      // No public read access — submissions are private
+      allow read: if false;
+
+      // No modification or deletion of submissions
+      allow update, delete: if false;
+
+      // Prevent listing/browsing
+      allow list: if false;
+    }
+
+    // ──────────────────────────────────────────────
+    // Collection: scans (Phase 2–3 — AI QA Scans)
+    // ──────────────────────────────────────────────
+
+    function isValidScan() {
+      let data = incoming();
+      let required = ['status', 'targetUrl', 'scanType', 'createdAt',
+        'createdBy', 'results'];
+
+      return data.keys().hasAll(required)
+        && data.keys().size() >= 6 && data.keys().size() <= 15
+        && data.status is string
+        && data.status.matches('^(pending|running|completed|failed)$')
+        && data.targetUrl is string
+        && data.targetUrl.matches('^https?://[^\\s/$.?#].[^\\s]*$')
+        && data.targetUrl.size() <= 2048
+        && data.scanType is string
+        && data.scanType.matches('^(xss|sqli|auth|config|headers|full)$')
+        && data.createdAt == request.time
+        && data.createdBy is string
+        && data.createdBy.matches('^[a-zA-Z0-9_\\-@.+]+$')
+        && data.createdBy.size() <= 256
+        && data.results is map
+        && data.results.keys().size() <= 100
+        && allStringsSafe(data);
+    }
+
+    match /scans/{scanId} {
+      // Only authenticated admins can read/write scans (future auth integration)
+      // For now: fully locked — will be opened when auth is implemented
+      allow create: if false;  // TODO: enable with auth
+      allow read: if false;    // TODO: enable with auth
+      allow update: if false;  // TODO: enable with auth
+      allow delete: if false;
+      allow list: if false;
+    }
+
+    // ──────────────────────────────────────────────
+    // Collection: reports (Phase 2–3 — Scan Reports)
+    // ──────────────────────────────────────────────
+
+    function isValidReport() {
+      let data = incoming();
+      let required = ['scanId', 'score', 'findings', 'createdAt', 'status'];
+
+      return data.keys().hasAll(required)
+        && data.keys().size() >= 5 && data.keys().size() <= 12
+        && data.scanId is string
+        && data.scanId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.score is number
+        && data.score >= 0 && data.score <= 100
+        && data.findings is list
+        && data.findings.size() <= 500
+        && data.createdAt == request.time
+        && data.status is string
+        && data.status.matches('^(draft|final|archived)$')
+        && allStringsSafe(data);
+    }
+
+    match /reports/{reportId} {
+      // Fully locked until auth is implemented
+      allow create: if false;  // TODO: enable with auth
+      allow read: if false;    // TODO: enable with auth
+      allow update: if false;  // TODO: enable with auth
+      allow delete: if false;
+      allow list: if false;
+    }
+
+    // ──────────────────────────────────────────────
+    // Collection: users (Phase 2 — B2B Accounts)
+    // ──────────────────────────────────────────────
+
+    match /users/{userId} {
+      // Fully locked until auth is implemented
+      allow create: if false;
+      allow read, update: if false;  // TODO: request.auth.uid == userId
+      allow delete: if false;
+      allow list: if false;
+    }
+
+    // ──────────────────────────────────────────────
+    // Fallback: Deny everything else
+    // ──────────────────────────────────────────────
+
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
