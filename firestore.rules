@@ -52,12 +52,36 @@ service cloud.firestore {
     }
 
     // ──────────────────────────────────────────────
+    // Auth Helpers
+    // ──────────────────────────────────────────────
+
+    // Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    // Check if user has admin custom claim
+    function isAdmin() {
+      return isAuthenticated()
+        && request.auth.token.admin == true;
+    }
+
+    // ──────────────────────────────────────────────
     // Rate Limiting Helpers
     // ──────────────────────────────────────────────
 
-    // Max 100 writes per day per collection (baseline for quoteRequests)
+    // Max 100 writes per day per user (tracked via rate-limit subcollection)
+    function rateLimitPerUser(collectionPath, uid) {
+      let rateDoc = get(
+        /databases/$(database)/documents/rate-limits/requests
+      );
+      let userKey = collectionPath + '/' + uid;
+      let count = rateDoc.data[userKey];
+      return count is number && count < 100;
+    }
+
+    // Max 100 writes per day per collection (fallback for unauthenticated)
     function rateLimitRequests(collectionPath) {
-      // Count documents created in the last 24 hours
       let recent = getAfter(
         /databases/$(database)/documents/$(collectionPath),
         100
