@@ -287,6 +287,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* AI QA Testing CTA Section */}
+      <section className="bg-gradient-to-br from-primary/10 to-primary/5 border-y border-primary/20 py-xl">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 rounded-full px-sm py-xs font-label-caps text-[12px] text-primary uppercase tracking-wider font-semibold mb-md">
+            ✨ New Service / Ny Tjeneste
+          </div>
+          <h2 className="font-h2 text-[30px] font-semibold text-on-background mb-sm">
+            AI QA Testing — Flerspråklig Kvalitetssikring
+          </h2>
+          <p className="font-body-md text-on-surface-variant max-w-2xl mx-auto mb-md">
+            Automatiserte kvalitetstester for dine chatboter og KI-agenter på 10+
+            språk. Integrert i CI/CD, i samsvar med EUs AI Act. Utviklet for
+            norske bedrifter.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-sm justify-center">
+            <Link
+              to="/ai-qa-service"
+              className="bg-primary text-on-primary font-button text-[14px] font-medium px-md py-sm rounded-DEFAULT hover:bg-on-primary-fixed-variant transition-colors shadow-sm inline-flex items-center gap-2"
+            >
+              Learn More — Les Mer
+              <ArrowUpRight size={16} />
+            </Link>
+            <Link
+              to="/request-services"
+              className="bg-transparent text-on-background border border-surface-container-highest font-button text-[14px] font-medium px-md py-sm rounded-DEFAULT hover:bg-surface-container-low transition-colors inline-flex items-center justify-center"
+            >
+              Request a Quote
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Trust & Authority Section */}
       <section className="max-w-[1200px] mx-auto px-6 py-xl" id="about">
         <div className="grid md:grid-cols-2 gap-xl items-center">
