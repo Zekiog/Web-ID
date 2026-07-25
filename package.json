@@ -30,7 +30,8 @@
     "vite": "^6.2.0",
     "zod": "^4.3.6",
     "@upstash/ratelimit": "^2.0.0",
-    "@upstash/redis": "^1.28.4"
+    "@upstash/redis": "^1.28.4",
+    "@vercel/edge": "^1.2.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
