@@ -1,4 +1,18 @@
-Props, State> {
+import { Component, type ErrorInfo, type ReactNode } from "react";
+import { Link } from "react-router-dom";
+import { AlertTriangle, ChevronRight, RefreshCw, Home } from "lucide-react";
+
+interface Props {
+  children: ReactNode;
+  fallback?: ReactNode;
+}
+
+interface State {
+  hasError: boolean;
+  error: Error | null;
+}
+
+export default class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = { hasError: false, error: null };
