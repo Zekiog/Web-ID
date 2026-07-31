@@ -1,0 +1,1657 @@
+{
+  "generated_at": "2026-07-05T00:53:01.079Z",
+  "owner": "Zekiog",
+  "total_repositories": 233,
+  "category_count": 9,
+  "categories": {
+    "agent-orchestration": [
+      {
+        "nameWithOwner": "Zekiog/a11yAgent",
+        "url": "https://github.com/Zekiog/a11yAgent",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/agent-reach",
+        "url": "https://github.com/Zekiog/agent-reach",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/Agent-Z",
+        "url": "https://github.com/Zekiog/Agent-Z",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/agent-z-os",
+        "url": "https://github.com/Zekiog/agent-z-os",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/agent-zero",
+        "url": "https://github.com/Zekiog/agent-zero",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/agentReceipt",
+        "url": "https://github.com/Zekiog/agentReceipt",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Agents",
+        "url": "https://github.com/Zekiog/Agents",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ai-super-agents-control-system",
+        "url": "https://github.com/Zekiog/ai-super-agents-control-system",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ai-webhook",
+        "url": "https://github.com/Zekiog/ai-webhook",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/Archon",
+        "url": "https://github.com/Zekiog/Archon",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/autogen",
+        "url": "https://github.com/Zekiog/autogen",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/camel",
+        "url": "https://github.com/Zekiog/camel",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/chainlingo",
+        "url": "https://github.com/Zekiog/chainlingo",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/changelogLingo",
+        "url": "https://github.com/Zekiog/changelogLingo",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/claude-squad",
+        "url": "https://github.com/Zekiog/claude-squad",
+        "primaryLanguage": "Go",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/cloud-agents",
+        "url": "https://github.com/Zekiog/cloud-agents",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/company-research-agent",
+        "url": "https://github.com/Zekiog/company-research-agent",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/contractNarrator",
+        "url": "https://github.com/Zekiog/contractNarrator",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/CopilotKit",
+        "url": "https://github.com/Zekiog/CopilotKit",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/crewAI",
+        "url": "https://github.com/Zekiog/crewAI",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/DeepCode",
+        "url": "https://github.com/Zekiog/DeepCode",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/deer-flow",
+        "url": "https://github.com/Zekiog/deer-flow",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/dify",
+        "url": "https://github.com/Zekiog/dify",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ECC",
+        "url": "https://github.com/Zekiog/ECC",
+        "primaryLanguage": "JavaScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/gemma-chat",
+        "url": "https://github.com/Zekiog/gemma-chat",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/glossaryGuard",
+        "url": "https://github.com/Zekiog/glossaryGuard",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/graphiti",
+        "url": "https://github.com/Zekiog/graphiti",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Her-Me-Z",
+        "url": "https://github.com/Zekiog/Her-Me-Z",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/hermes-agent",
+        "url": "https://github.com/Zekiog/hermes-agent",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/hermes-execution-os-sprint1",
+        "url": "https://github.com/Zekiog/hermes-execution-os-sprint1",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/hermes-legal",
+        "url": "https://github.com/Zekiog/hermes-legal",
+        "primaryLanguage": "HTML",
+        "private": false,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/html-video",
+        "url": "https://github.com/Zekiog/html-video",
+        "primaryLanguage": "HTML",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/locally-uncensored",
+        "url": "https://github.com/Zekiog/locally-uncensored",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/master-blueprint-agent",
+        "url": "https://github.com/Zekiog/master-blueprint-agent",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/mirofish",
+        "url": "https://github.com/Zekiog/mirofish",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Multi-agent-Parallell-",
+        "url": "https://github.com/Zekiog/Multi-agent-Parallell-",
+        "primaryLanguage": "Shell",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/nanocoder",
+        "url": "https://github.com/Zekiog/nanocoder",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/obsidian-skills",
+        "url": "https://github.com/Zekiog/obsidian-skills",
+        "primaryLanguage": null,
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/open-agent-platform",
+        "url": "https://github.com/Zekiog/open-agent-platform",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/OpenAlice",
+        "url": "https://github.com/Zekiog/OpenAlice",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/OpenMontage-Z",
+        "url": "https://github.com/Zekiog/OpenMontage-Z",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/openpencil",
+        "url": "https://github.com/Zekiog/openpencil",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/ottomator-agents",
+        "url": "https://github.com/Zekiog/ottomator-agents",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/pentestagent",
+        "url": "https://github.com/Zekiog/pentestagent",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/prime-rl",
+        "url": "https://github.com/Zekiog/prime-rl",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/promptLedger",
+        "url": "https://github.com/Zekiog/promptLedger",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ruflo",
+        "url": "https://github.com/Zekiog/ruflo",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/skills",
+        "url": "https://github.com/Zekiog/skills",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/Skywork-Skills",
+        "url": "https://github.com/Zekiog/Skywork-Skills",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/solana-agent-kit",
+        "url": "https://github.com/Zekiog/solana-agent-kit",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/specForge",
+        "url": "https://github.com/Zekiog/specForge",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/super-agents",
+        "url": "https://github.com/Zekiog/super-agents",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/superagent-A-IDentityz",
+        "url": "https://github.com/Zekiog/superagent-A-IDentityz",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/superpowers",
+        "url": "https://github.com/Zekiog/superpowers",
+        "primaryLanguage": "Shell",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/tokenVoice",
+        "url": "https://github.com/Zekiog/tokenVoice",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/youtube-chanel",
+        "url": "https://github.com/Zekiog/youtube-chanel",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ZERO",
+        "url": "https://github.com/Zekiog/ZERO",
+        "primaryLanguage": "Go",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/Zion-AID",
+        "url": "https://github.com/Zekiog/Zion-AID",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Zrucix",
+        "url": "https://github.com/Zekiog/Zrucix",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Zrucix-Agentic-Architecture",
+        "url": "https://github.com/Zekiog/Zrucix-Agentic-Architecture",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      }
+    ],
+    "data-and-memory": [
+      {
+        "nameWithOwner": "Zekiog/ai-memory-vault",
+        "url": "https://github.com/Zekiog/ai-memory-vault",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/claude-obsidian",
+        "url": "https://github.com/Zekiog/claude-obsidian",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/graphify",
+        "url": "https://github.com/Zekiog/graphify",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/helix-db",
+        "url": "https://github.com/Zekiog/helix-db",
+        "primaryLanguage": "Rust",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/Local_Chat_RAG",
+        "url": "https://github.com/Zekiog/Local_Chat_RAG",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/shannon",
+        "url": "https://github.com/Zekiog/shannon",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/supabase",
+        "url": "https://github.com/Zekiog/supabase",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/turbovec",
+        "url": "https://github.com/Zekiog/turbovec",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      }
+    ],
+    "devops-and-automation": [
+      {
+        "nameWithOwner": "Zekiog/AIClient2API",
+        "url": "https://github.com/Zekiog/AIClient2API",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/awesome-claude-skills",
+        "url": "https://github.com/Zekiog/awesome-claude-skills",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/brightbean-studio",
+        "url": "https://github.com/Zekiog/brightbean-studio",
+        "primaryLanguage": "HTML",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/cli",
+        "url": "https://github.com/Zekiog/cli",
+        "primaryLanguage": "Go",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Crackker",
+        "url": "https://github.com/Zekiog/Crackker",
+        "primaryLanguage": "C",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/discord-api-docs",
+        "url": "https://github.com/Zekiog/discord-api-docs",
+        "primaryLanguage": "MDX",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/docs",
+        "url": "https://github.com/Zekiog/docs",
+        "primaryLanguage": "HTML",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/exercises-dataset",
+        "url": "https://github.com/Zekiog/exercises-dataset",
+        "primaryLanguage": "HTML",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/hermes-3day-ops-report",
+        "url": "https://github.com/Zekiog/hermes-3day-ops-report",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/HRM",
+        "url": "https://github.com/Zekiog/HRM",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ID-AI-Private-Zeki",
+        "url": "https://github.com/Zekiog/ID-AI-Private-Zeki",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/n8n",
+        "url": "https://github.com/Zekiog/n8n",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/terraform-google-three-tier-web-app",
+        "url": "https://github.com/Zekiog/terraform-google-three-tier-web-app",
+        "primaryLanguage": "HCL",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/zekeriya",
+        "url": "https://github.com/Zekiog/zekeriya",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      }
+    ],
+    "frontend-and-ui": [
+      {
+        "nameWithOwner": "Zekiog/ai-chatbot",
+        "url": "https://github.com/Zekiog/ai-chatbot",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/api-mega-list",
+        "url": "https://github.com/Zekiog/api-mega-list",
+        "primaryLanguage": "JavaScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/Build-your-own-copilot-Solution-Accelerator",
+        "url": "https://github.com/Zekiog/Build-your-own-copilot-Solution-Accelerator",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/choc-ui",
+        "url": "https://github.com/Zekiog/choc-ui",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Cracker",
+        "url": "https://github.com/Zekiog/Cracker",
+        "primaryLanguage": "C++",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/desktop",
+        "url": "https://github.com/Zekiog/desktop",
+        "primaryLanguage": "C++",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/electron",
+        "url": "https://github.com/Zekiog/electron",
+        "primaryLanguage": "C++",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ghost-ai",
+        "url": "https://github.com/Zekiog/ghost-ai",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/gradio",
+        "url": "https://github.com/Zekiog/gradio",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/LLM-engine-",
+        "url": "https://github.com/Zekiog/LLM-engine-",
+        "primaryLanguage": "JavaScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/obsidian-sample-plugin",
+        "url": "https://github.com/Zekiog/obsidian-sample-plugin",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/open-webui",
+        "url": "https://github.com/Zekiog/open-webui",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/payload",
+        "url": "https://github.com/Zekiog/payload",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/RemoveJoinLeaveMsg",
+        "url": "https://github.com/Zekiog/RemoveJoinLeaveMsg",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/semantic-kernel",
+        "url": "https://github.com/Zekiog/semantic-kernel",
+        "primaryLanguage": "C#",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/talk-desktop",
+        "url": "https://github.com/Zekiog/talk-desktop",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/wagmi",
+        "url": "https://github.com/Zekiog/wagmi",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Whisky-crossover",
+        "url": "https://github.com/Zekiog/Whisky-crossover",
+        "primaryLanguage": "Swift",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/zapier-platform",
+        "url": "https://github.com/Zekiog/zapier-platform",
+        "primaryLanguage": "JavaScript",
+        "private": false,
+        "fork": true
+      }
+    ],
+    "general-experiments-and-forks": [
+      {
+        "nameWithOwner": "Zekiog/ai-labs-claude-skills",
+        "url": "https://github.com/Zekiog/ai-labs-claude-skills",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/ai-pr-reviewer",
+        "url": "https://github.com/Zekiog/ai-pr-reviewer",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/awesome-claude",
+        "url": "https://github.com/Zekiog/awesome-claude",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/bolt.diy",
+        "url": "https://github.com/Zekiog/bolt.diy",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/caveman-compressor",
+        "url": "https://github.com/Zekiog/caveman-compressor",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/CloakBrowser",
+        "url": "https://github.com/Zekiog/CloakBrowser",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/Digital-Ecosystem",
+        "url": "https://github.com/Zekiog/Digital-Ecosystem",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/docsENS",
+        "url": "https://github.com/Zekiog/docsENS",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/domain-profiles",
+        "url": "https://github.com/Zekiog/domain-profiles",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/easyappointments",
+        "url": "https://github.com/Zekiog/easyappointments",
+        "primaryLanguage": "PHP",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/exo",
+        "url": "https://github.com/Zekiog/exo",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Expander",
+        "url": "https://github.com/Zekiog/Expander",
+        "primaryLanguage": "Rust",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/firecrawl",
+        "url": "https://github.com/Zekiog/firecrawl",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/flow-guardian-system-nexus",
+        "url": "https://github.com/Zekiog/flow-guardian-system-nexus",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/freedomain",
+        "url": "https://github.com/Zekiog/freedomain",
+        "primaryLanguage": "HTML",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/freellmapi",
+        "url": "https://github.com/Zekiog/freellmapi",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/generative-ai",
+        "url": "https://github.com/Zekiog/generative-ai",
+        "primaryLanguage": "Jupyter Notebook",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/git-tips-z",
+        "url": "https://github.com/Zekiog/git-tips-z",
+        "primaryLanguage": null,
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/global-brand-forge",
+        "url": "https://github.com/Zekiog/global-brand-forge",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/godocs",
+        "url": "https://github.com/Zekiog/godocs",
+        "primaryLanguage": "Shell",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/groupcache",
+        "url": "https://github.com/Zekiog/groupcache",
+        "primaryLanguage": "Go",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/hermes-5h-complete-dossier",
+        "url": "https://github.com/Zekiog/hermes-5h-complete-dossier",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/hermes-trading",
+        "url": "https://github.com/Zekiog/hermes-trading",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/introduction-to-github",
+        "url": "https://github.com/Zekiog/introduction-to-github",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/jest",
+        "url": "https://github.com/Zekiog/jest",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/kestra",
+        "url": "https://github.com/Zekiog/kestra",
+        "primaryLanguage": "Java",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/LibraryApp",
+        "url": "https://github.com/Zekiog/LibraryApp",
+        "primaryLanguage": "C#",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/llama.cpp",
+        "url": "https://github.com/Zekiog/llama.cpp",
+        "primaryLanguage": "C++",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/mon_apr_06_2026_kusursuz_yapay_zeka_ekosist",
+        "url": "https://github.com/Zekiog/mon_apr_06_2026_kusursuz_yapay_zeka_ekosist",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/new",
+        "url": "https://github.com/Zekiog/new",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/new-stocks-app",
+        "url": "https://github.com/Zekiog/new-stocks-app",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/Nft",
+        "url": "https://github.com/Zekiog/Nft",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Nft.github.io",
+        "url": "https://github.com/Zekiog/Nft.github.io",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/obliteratus",
+        "url": "https://github.com/Zekiog/obliteratus",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/obsidian-copilot",
+        "url": "https://github.com/Zekiog/obsidian-copilot",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/Oguz",
+        "url": "https://github.com/Zekiog/Oguz",
+        "primaryLanguage": "HTML",
+        "private": false,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ollama",
+        "url": "https://github.com/Zekiog/ollama",
+        "primaryLanguage": "Go",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/open-vsx.org",
+        "url": "https://github.com/Zekiog/open-vsx.org",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/openclaude",
+        "url": "https://github.com/Zekiog/openclaude",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/openclaw",
+        "url": "https://github.com/Zekiog/openclaw",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/OpenCore-Legacy-Patcher",
+        "url": "https://github.com/Zekiog/OpenCore-Legacy-Patcher",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/openhuman",
+        "url": "https://github.com/Zekiog/openhuman",
+        "primaryLanguage": "Rust",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/openmanus",
+        "url": "https://github.com/Zekiog/openmanus",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/openwa",
+        "url": "https://github.com/Zekiog/openwa",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/parlant",
+        "url": "https://github.com/Zekiog/parlant",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/PDF-OCR",
+        "url": "https://github.com/Zekiog/PDF-OCR",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/pi-lmstudio-local-bootstrap",
+        "url": "https://github.com/Zekiog/pi-lmstudio-local-bootstrap",
+        "primaryLanguage": "Shell",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/pim-community-dev",
+        "url": "https://github.com/Zekiog/pim-community-dev",
+        "primaryLanguage": "PHP",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Prompts",
+        "url": "https://github.com/Zekiog/Prompts",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/qwen2.5",
+        "url": "https://github.com/Zekiog/qwen2.5",
+        "primaryLanguage": "Shell",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Shine",
+        "url": "https://github.com/Zekiog/Shine",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Shinng.genini2.5",
+        "url": "https://github.com/Zekiog/Shinng.genini2.5",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/simplex-chat",
+        "url": "https://github.com/Zekiog/simplex-chat",
+        "primaryLanguage": "Haskell",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/siyuan",
+        "url": "https://github.com/Zekiog/siyuan",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/skills-introduction-to-github",
+        "url": "https://github.com/Zekiog/skills-introduction-to-github",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/slack-dev",
+        "url": "https://github.com/Zekiog/slack-dev",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/starter-applets",
+        "url": "https://github.com/Zekiog/starter-applets",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/strapi",
+        "url": "https://github.com/Zekiog/strapi",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/supertonic",
+        "url": "https://github.com/Zekiog/supertonic",
+        "primaryLanguage": "Swift",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/terminal",
+        "url": "https://github.com/Zekiog/terminal",
+        "primaryLanguage": "C++",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/translatify-magic-portal",
+        "url": "https://github.com/Zekiog/translatify-magic-portal",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/trigger.dev",
+        "url": "https://github.com/Zekiog/trigger.dev",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/turgutlar-oto-tamir-merkezi",
+        "url": "https://github.com/Zekiog/turgutlar-oto-tamir-merkezi",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/turkish-quest-backend",
+        "url": "https://github.com/Zekiog/turkish-quest-backend",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/verifiers",
+        "url": "https://github.com/Zekiog/verifiers",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/vibe-coding",
+        "url": "https://github.com/Zekiog/vibe-coding",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/vibevoice",
+        "url": "https://github.com/Zekiog/vibevoice",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/welcome-youtube",
+        "url": "https://github.com/Zekiog/welcome-youtube",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/whatsapp-web-reveng",
+        "url": "https://github.com/Zekiog/whatsapp-web-reveng",
+        "primaryLanguage": "JavaScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/z-api-docs",
+        "url": "https://github.com/Zekiog/z-api-docs",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Z-Puter",
+        "url": "https://github.com/Zekiog/Z-Puter",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/zed",
+        "url": "https://github.com/Zekiog/zed",
+        "primaryLanguage": "Rust",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/ZEKI",
+        "url": "https://github.com/Zekiog/ZEKI",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/zeki-blockchain-nexus-ai",
+        "url": "https://github.com/Zekiog/zeki-blockchain-nexus-ai",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Zekiog",
+        "url": "https://github.com/Zekiog/Zekiog",
+        "primaryLanguage": null,
+        "private": false,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/zezilly.github.io",
+        "url": "https://github.com/Zekiog/zezilly.github.io",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Zion-Web-Base",
+        "url": "https://github.com/Zekiog/Zion-Web-Base",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ZionWeb",
+        "url": "https://github.com/Zekiog/ZionWeb",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ZionWebb",
+        "url": "https://github.com/Zekiog/ZionWebb",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/zlaw-openclaw-skeleton-private",
+        "url": "https://github.com/Zekiog/zlaw-openclaw-skeleton-private",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ZoReN",
+        "url": "https://github.com/Zekiog/ZoReN",
+        "primaryLanguage": "Ruby",
+        "private": true,
+        "fork": false
+      }
+    ],
+    "mcp-platform": [
+      {
+        "nameWithOwner": "Zekiog/4everland-hosting-mcp",
+        "url": "https://github.com/Zekiog/4everland-hosting-mcp",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/A-Identity-Z",
+        "url": "https://github.com/Zekiog/A-Identity-Z",
+        "primaryLanguage": "JavaScript",
+        "private": false,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/activepieces",
+        "url": "https://github.com/Zekiog/activepieces",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/agent-mcp-ops",
+        "url": "https://github.com/Zekiog/agent-mcp-ops",
+        "primaryLanguage": "Shell",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/awesome-mcp-servers",
+        "url": "https://github.com/Zekiog/awesome-mcp-servers",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/awesome-selfhosted",
+        "url": "https://github.com/Zekiog/awesome-selfhosted",
+        "primaryLanguage": null,
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/codebase-memory-mcp",
+        "url": "https://github.com/Zekiog/codebase-memory-mcp",
+        "primaryLanguage": "C",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/core",
+        "url": "https://github.com/Zekiog/core",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/dbx",
+        "url": "https://github.com/Zekiog/dbx",
+        "primaryLanguage": "Rust",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/fincept-ai-ops",
+        "url": "https://github.com/Zekiog/fincept-ai-ops",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Github-Repolari-Private-UPGRADES",
+        "url": "https://github.com/Zekiog/Github-Repolari-Private-UPGRADES",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/go-whatsapp-web-multidevice",
+        "url": "https://github.com/Zekiog/go-whatsapp-web-multidevice",
+        "primaryLanguage": "Go",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/jumpserver",
+        "url": "https://github.com/Zekiog/jumpserver",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/LLM-nosia",
+        "url": "https://github.com/Zekiog/LLM-nosia",
+        "primaryLanguage": "Ruby",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/mcp-installer",
+        "url": "https://github.com/Zekiog/mcp-installer",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/mcp-server",
+        "url": "https://github.com/Zekiog/mcp-server",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/mcp-server-Zion-",
+        "url": "https://github.com/Zekiog/mcp-server-Zion-",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/mem0-mcp",
+        "url": "https://github.com/Zekiog/mem0-mcp",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/mem0mcp",
+        "url": "https://github.com/Zekiog/mem0mcp",
+        "primaryLanguage": "PowerShell",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/memory-core-mcp",
+        "url": "https://github.com/Zekiog/memory-core-mcp",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/openpencil-skill",
+        "url": "https://github.com/Zekiog/openpencil-skill",
+        "primaryLanguage": null,
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/quant-mind",
+        "url": "https://github.com/Zekiog/quant-mind",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/second-brain-cloudflare",
+        "url": "https://github.com/Zekiog/second-brain-cloudflare",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/Vuln-Z-Claw",
+        "url": "https://github.com/Zekiog/Vuln-Z-Claw",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      }
+    ],
+    "sdk-tooling-and-cli": [
+      {
+        "nameWithOwner": "Zekiog/awesome-chatgpt-prompts",
+        "url": "https://github.com/Zekiog/awesome-chatgpt-prompts",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/dnscrypt-win-client",
+        "url": "https://github.com/Zekiog/dnscrypt-win-client",
+        "primaryLanguage": "C#",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/GhostTrack",
+        "url": "https://github.com/Zekiog/GhostTrack",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/obsidian-releases",
+        "url": "https://github.com/Zekiog/obsidian-releases",
+        "primaryLanguage": null,
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/slack-cli",
+        "url": "https://github.com/Zekiog/slack-cli",
+        "primaryLanguage": "Go",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/sub2api",
+        "url": "https://github.com/Zekiog/sub2api",
+        "primaryLanguage": "Go",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/textgenz",
+        "url": "https://github.com/Zekiog/textgenz",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/tools",
+        "url": "https://github.com/Zekiog/tools",
+        "primaryLanguage": "Go",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/whatsapp-web.js",
+        "url": "https://github.com/Zekiog/whatsapp-web.js",
+        "primaryLanguage": "JavaScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/zstack",
+        "url": "https://github.com/Zekiog/zstack",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      }
+    ],
+    "security-and-research": [
+      {
+        "nameWithOwner": "Zekiog/hackingtool-plugin",
+        "url": "https://github.com/Zekiog/hackingtool-plugin",
+        "primaryLanguage": "Python",
+        "private": true,
+        "fork": false
+      }
+    ],
+    "web-identity-and-product": [
+      {
+        "nameWithOwner": "Zekiog/aidentity-core-platform-nexus-builder",
+        "url": "https://github.com/Zekiog/aidentity-core-platform-nexus-builder",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/logto",
+        "url": "https://github.com/Zekiog/logto",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/odysseus",
+        "url": "https://github.com/Zekiog/odysseus",
+        "primaryLanguage": "Python",
+        "private": false,
+        "fork": true
+      },
+      {
+        "nameWithOwner": "Zekiog/openclaw-autoclaw-workspace",
+        "url": "https://github.com/Zekiog/openclaw-autoclaw-workspace",
+        "primaryLanguage": "Shell",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Shining",
+        "url": "https://github.com/Zekiog/Shining",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/shining-beauty-reimagined",
+        "url": "https://github.com/Zekiog/shining-beauty-reimagined",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/shining-beauty-spa",
+        "url": "https://github.com/Zekiog/shining-beauty-spa",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/shining-beauty-wellness",
+        "url": "https://github.com/Zekiog/shining-beauty-wellness",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Shining-new-2026",
+        "url": "https://github.com/Zekiog/Shining-new-2026",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Shining-pw",
+        "url": "https://github.com/Zekiog/Shining-pw",
+        "primaryLanguage": "HTML",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/shiningbeauty-static",
+        "url": "https://github.com/Zekiog/shiningbeauty-static",
+        "primaryLanguage": null,
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Shinings.pw",
+        "url": "https://github.com/Zekiog/Shinings.pw",
+        "primaryLanguage": "HTML",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Spa-Shinhg",
+        "url": "https://github.com/Zekiog/Spa-Shinhg",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/Web-ID",
+        "url": "https://github.com/Zekiog/Web-ID",
+        "primaryLanguage": "TypeScript",
+        "private": false,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/workspace-9407293a",
+        "url": "https://github.com/Zekiog/workspace-9407293a",
+        "primaryLanguage": "TypeScript",
+        "private": true,
+        "fork": false
+      },
+      {
+        "nameWithOwner": "Zekiog/ZEKI-WEB-ID",
+        "url": "https://github.com/Zekiog/ZEKI-WEB-ID",
+        "primaryLanguage": "JavaScript",
+        "private": true,
+        "fork": false
+      }
+    ]
+  }
+}
