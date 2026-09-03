@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
+import CookieConsent from "./components/CookieConsent";
 import Home from "./pages/Home";
 import RequestServices from "./pages/RequestServices";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -35,6 +36,7 @@ export default function App() {
           </ErrorBoundary>
         </div>
         <Footer />
+        <CookieConsent />
       </div>
     </BrowserRouter>
   );
