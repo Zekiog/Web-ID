@@ -52,7 +52,7 @@ export default function CookieConsent() {
           <h3 className="font-button text-on-surface flex items-center gap-2">
             Çerezleri Kullanıyoruz
             <Link
-              to="/privacy"
+              to="/privacy-policy"
               className="text-primary hover:underline flex items-center gap-1 text-xs"
               target="_blank"
               rel="noopener noreferrer"
