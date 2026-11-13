@@ -1,45 +1,64 @@
 import { Link } from "react-router-dom";
+import { container, kicker } from "../lib/classes";
+
+const pageLinks = [
+  { to: "/", label: "Home" },
+  { to: "/ai-qa-service", label: "AI review" },
+  { to: "/request-services", label: "Request a review" },
+];
+
+const legalLinks = [
+  { to: "/terms-of-service", label: "Terms of Service" },
+  { to: "/privacy-policy", label: "Privacy Policy" },
+  { to: "/cookie-policy", label: "Cookie Policy" },
+  { to: "/impressum", label: "Impressum" },
+];
 
 export default function Footer() {
   return (
-    <footer className="w-full py-12 bg-surface-bright border-t border-outline-variant mt-20">
-      <div className="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-lg font-bold text-on-surface">multilingual.no</div>
-        <div className="flex flex-wrap justify-center gap-md">
-          <Link
-            className="text-sm font-['Inter'] text-on-surface-variant hover:text-primary hover:underline transition-all duration-150 ease-in-out"
-            to="/terms-of-service"
-          >
-            Terms of Service
-          </Link>
-          <Link
-            className="text-sm font-['Inter'] text-on-surface-variant hover:text-primary hover:underline transition-all duration-150 ease-in-out"
-            to="/privacy-policy"
-          >
-            Privacy Policy
-          </Link>
-          <Link
-            className="text-sm font-['Inter'] text-on-surface-variant hover:text-primary hover:underline transition-all duration-150 ease-in-out"
-            to="/cookie-policy"
-          >
-            Cookie Policy
-          </Link>
-          <Link
-            className="text-sm font-['Inter'] text-on-surface-variant hover:text-primary hover:underline transition-all duration-150 ease-in-out"
-            to="/impressum"
-          >
-            Impressum
-          </Link>
-          <a
-            className="text-sm font-['Inter'] text-on-surface-variant hover:text-primary hover:underline transition-all duration-150 ease-in-out"
-            href="mailto:contact@multilingual.no"
-          >
-            Contact Us
-          </a>
+    <footer className="border-t border-outline-variant bg-background">
+      <div className={`${container} grid gap-12 py-16 md:grid-cols-12`}>
+        <div className="md:col-span-5">
+          <p className="font-display text-4xl text-on-surface">Web-ID</p>
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-on-surface-variant">
+            Language quality in Norwegian, Turkish, and English. Oslo, Norway.
+          </p>
         </div>
-        <div className="text-sm font-['Inter'] text-on-surface-variant text-center md:text-left">
-          © 2026 multilingual.no. Precision AI Localization.
-        </div>
+        <nav aria-label="Footer" className="grid gap-10 sm:grid-cols-2 md:col-span-7">
+          <div>
+            <p className={kicker}>Pages</p>
+            <ul className="mt-4 space-y-2">
+              {pageLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className="text-sm text-on-surface hover:text-primary">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className={kicker}>Legal</p>
+            <ul className="mt-4 space-y-2">
+              {legalLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className="text-sm text-on-surface hover:text-primary">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="mailto:contact@multilingual.no"
+              className="mt-5 inline-block text-sm text-primary hover:underline"
+            >
+              contact@multilingual.no
+            </a>
+          </div>
+        </nav>
+      </div>
+      <div className={`${container} border-t border-outline-variant py-5 text-sm text-on-surface-variant`}>
+        © 2026 multilingual.no
       </div>
     </footer>
   );

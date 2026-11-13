@@ -1,29 +1,27 @@
 # Web-ID
 
-Marketing & landing site for **Web-ID** — a multilingual AI-quality,
-localization and interpretation service for cross-border teams.
+Marketing site for Web-ID (multilingual.no). Language quality work based in Norway: localisation, terminology, AI evaluation, and interpretation.
 
-> **Status:** ✅ Live at web-id.no — Vercel SPA. Active maintenance.
+## Status
+
+Live on Vercel. Pushes to main deploy automatically.
 
 ## Stack
 
-- **React** + **TypeScript** + **Vite**
-- **Tailwind CSS** for styling
-- **Firebase Firestore** (rules in `firestore.rules`)
-- **Vercel** for hosting & middleware
+- React 19, TypeScript, Vite
+- Tailwind CSS 4
+- Firebase Firestore for the request form
+- Vercel hosting and edge middleware
 
 ## Develop
 
 ```bash
-npm install
-npm run dev      # local dev server
-npm run build    # production build → dist/
-npm run preview  # preview production build
+npm ci
+npm run dev
+npm run lint
+npm run build
+npm run preview
 ```
-
-## Deploy
-
-Pushes to `main` deploy automatically to Vercel.
 
 ## License
 
