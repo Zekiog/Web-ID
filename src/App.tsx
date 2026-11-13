@@ -23,14 +23,28 @@ function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    if (hash) {
-      const target = document.getElementById(hash.slice(1));
+    const id = hash.replace(/^#/, "");
+    if (!id) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    const started = performance.now();
+    let frame = 0;
+    const tick = () => {
+      const target = document.getElementById(id);
       if (target) {
         target.scrollIntoView();
         return;
       }
-    }
-    window.scrollTo(0, 0);
+      if (performance.now() - started > 2000) {
+        window.scrollTo(0, 0);
+        return;
+      }
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
   }, [pathname, hash]);
 
   return null;

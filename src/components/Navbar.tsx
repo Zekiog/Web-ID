@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useLenis } from "lenis/react";
 import { Menu, X } from "lucide-react";
 
 const links = [
@@ -14,6 +15,7 @@ export default function Navbar() {
   const { pathname } = useLocation();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const lenis = useLenis();
 
   useEffect(() => {
     setOpen(false);
@@ -27,6 +29,7 @@ export default function Navbar() {
     footer?.setAttribute("inert", "");
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    lenis?.stop();
     panelRef.current?.focus();
 
     const onKey = (event: KeyboardEvent) => {
@@ -40,9 +43,10 @@ export default function Navbar() {
       content?.removeAttribute("inert");
       footer?.removeAttribute("inert");
       document.body.style.overflow = previousOverflow;
+      lenis?.start();
       window.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, lenis]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-outline-variant/80 bg-background/95 backdrop-blur-md">
@@ -96,6 +100,7 @@ export default function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
+          data-lenis-prevent
           className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-background px-5 py-6 md:hidden"
         >
           <div className="flex flex-col">
