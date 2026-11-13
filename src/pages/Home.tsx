@@ -1,11 +1,13 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useTransform } from "motion/react";
 import CinematicHero from "../components/CinematicHero";
+import HingeStack from "../components/HingeStack";
 import Process, { type Step } from "../components/Process";
 import { btnPrimary, btnSecondary, container, h2, kicker, lede } from "../lib/classes";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import { usePageTitle } from "../lib/usePageTitle";
+import { useScrub } from "../lib/useScrub";
 
 const services = [
   {
@@ -87,7 +89,13 @@ export default function Home() {
         </div>
       </CinematicHero>
 
-      <Services />
+      <HingeStack
+        id="services"
+        kicker="Services"
+        title="Five kinds of work."
+        lede="Say which ones you need in the request. A job can be one of them, or several."
+        items={services}
+      />
       <Process
         kicker="Process"
         title="How a job runs."
@@ -100,124 +108,47 @@ export default function Home() {
   );
 }
 
-function Services() {
-  const reduce = useReducedMotion();
-  const narrow = useMediaQuery("(max-width: 767px)");
-
-  if (reduce || narrow) return <ServiceStack />;
-  return <ServiceReel />;
-}
-
-function ServiceStack() {
-  return (
-    <section id="services" className="border-t border-outline-variant py-24 md:py-32">
-      <div className={container}>
-        <p className={kicker}>Services</p>
-        <h2 className={`${h2} mt-4 max-w-xl`}>Five kinds of work.</h2>
-        <p className={`${lede} mt-5`}>
-          Say which ones you need in the request. A job can be one of them, or several.
-        </p>
-        <ul className="mt-12 grid gap-4 md:grid-cols-2">
-          {services.map((service) => (
-            <li key={service.index} className="border border-outline-variant bg-surface-container-low p-6 md:p-8">
-              <p className="font-display text-3xl text-primary">{service.index}</p>
-              <h3 className="mt-6 font-display text-3xl tracking-tight text-on-surface">{service.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-on-surface-variant">{service.body}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-function ServiceReel() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLUListElement>(null);
-  const distanceRef = useRef(0);
-  const [distance, setDistance] = useState(0);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-  const x = useTransform(scrollYProgress, (value) => -distanceRef.current * value);
-  const scaleX = useTransform(scrollYProgress, [0, 1], [0.08, 1]);
-
-  useLayoutEffect(() => {
-    const measure = () => {
-      const view = viewportRef.current;
-      const track = trackRef.current;
-      if (!view || !track) return;
-      const next = Math.max(0, track.scrollWidth - view.clientWidth);
-      distanceRef.current = next;
-      setDistance(next);
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    if (viewportRef.current) observer.observe(viewportRef.current);
-    if (trackRef.current) observer.observe(trackRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section
-      id="services"
-      ref={sectionRef}
-      className="relative z-10 overflow-x-clip border-t border-outline-variant"
-      style={
-        distance > 0
-          ? { height: `calc(100svh + ${Math.round(distance * 1.45)}px)` }
-          : { minHeight: "100svh" }
-      }
-    >
-      <div className="sticky top-0 flex h-svh items-stretch overflow-hidden">
-        <div className="flex w-[min(34vw,22rem)] shrink-0 flex-col justify-between py-24 pl-[max(1.25rem,calc((100vw-72rem)/2))] pr-8">
-          <div>
-            <p className={kicker}>Services</p>
-            <h2 className={`${h2} mt-4`}>Five kinds of work.</h2>
-            <p className="mt-5 max-w-xs text-base leading-relaxed text-on-surface-variant">
-              Say which ones you need in the request. A job can be one of them, or several.
-            </p>
-          </div>
-          <motion.div style={{ scaleX }} className="h-px origin-left bg-primary" />
-        </div>
-        <div ref={viewportRef} className="min-w-0 flex-1 overflow-hidden">
-          <motion.ul ref={trackRef} style={{ x }} className="flex h-full items-center gap-5 pr-[8vw]">
-            {services.map((service) => (
-              <li
-                key={service.index}
-                className="flex h-[min(68vh,32rem)] w-[min(70vw,26rem)] shrink-0 flex-col justify-between border border-outline-variant bg-surface-container-low p-8"
-              >
-                <p className="font-display text-4xl text-primary">{service.index}</p>
-                <div>
-                  <h3 className="font-display text-4xl tracking-tight text-on-surface">{service.title}</h3>
-                  <p className="mt-4 text-base leading-relaxed text-on-surface-variant">{service.body}</p>
-                </div>
-              </li>
-            ))}
-          </motion.ul>
-        </div>
-      </div>
-    </section>
-  );
-}
+const languages = [
+  { label: "Norsk", lang: "nb" },
+  { label: "Türkçe", lang: "tr" },
+  { label: "English", lang: "en" },
+];
 
 function About() {
+  const reduce = useReducedMotion();
+  const narrow = useMediaQuery("(max-width: 767px)");
+  const motionOn = reduce !== true && !narrow;
+  const ref = useRef<HTMLElement>(null);
+  const progress = useScrub(ref, ["start end", "end start"]);
+  const y = useTransform(progress, [0, 1], ["8%", "-8%"]);
+
   return (
-    <section id="about" className="border-t border-outline-variant py-24 md:py-32">
+    <section id="about" ref={ref} className="border-t border-outline-variant py-24 md:py-32">
       <div className={`${container} grid items-center gap-12 md:grid-cols-12`}>
         <div className="md:col-span-5">
           <div className="aspect-[4/5] overflow-hidden border border-outline-variant bg-surface-container">
-            <img
-              src="/founder.jpg"
-              alt="Portrait of Mehmet Zeki Oguz"
-              width={1024}
-              height={1024}
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full object-cover object-[center_18%]"
-            />
+            {motionOn ? (
+              <motion.img
+                src="/founder.jpg"
+                alt="Portrait of Mehmet Zeki Oguz"
+                width={1024}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+                style={{ y }}
+                className="h-[116%] w-full max-w-none object-cover object-[center_18%]"
+              />
+            ) : (
+              <img
+                src="/founder.jpg"
+                alt="Portrait of Mehmet Zeki Oguz"
+                width={1024}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover object-[center_18%]"
+              />
+            )}
           </div>
         </div>
         <div className="md:col-span-6 md:col-start-7">
@@ -229,19 +160,51 @@ function About() {
             of AI-written text, and interpretation, in Norwegian, Turkish, and English.
           </p>
           <ul className="mt-10 space-y-2">
-            <li className="font-display text-4xl text-on-surface" lang="nb">
-              Norsk
-            </li>
-            <li className="font-display text-4xl text-on-surface" lang="tr">
-              Türkçe
-            </li>
-            <li className="font-display text-4xl text-on-surface" lang="en">
-              English
-            </li>
+            {languages.map((language, index) => (
+              <LanguageLine
+                key={language.lang}
+                label={language.label}
+                lang={language.lang}
+                index={index}
+                progress={progress}
+                motionOn={motionOn}
+              />
+            ))}
           </ul>
         </div>
       </div>
     </section>
+  );
+}
+
+function LanguageLine({
+  label,
+  lang,
+  index,
+  progress,
+  motionOn,
+}: {
+  label: string;
+  lang: string;
+  index: number;
+  progress: ReturnType<typeof useScrub>;
+  motionOn: boolean;
+}) {
+  const y = useTransform(progress, [0.18 + index * 0.08, 0.46 + index * 0.08], [18, 0]);
+  const opacity = useTransform(progress, [0.18 + index * 0.08, 0.42 + index * 0.08], [0.55, 1]);
+
+  if (!motionOn) {
+    return (
+      <li className="font-display text-4xl text-on-surface" lang={lang}>
+        {label}
+      </li>
+    );
+  }
+
+  return (
+    <motion.li style={{ y, opacity }} className="font-display text-4xl text-on-surface" lang={lang}>
+      {label}
+    </motion.li>
   );
 }
 
