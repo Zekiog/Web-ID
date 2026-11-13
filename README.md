@@ -1,6 +1,6 @@
 # Web-ID
 
-Marketing site for Web-ID (web-id.no). Language quality work based in Norway: localisation, terminology, AI evaluation, and interpretation.
+Marketing site for Web-ID (multilingual.no). Language quality work based in Norway: localisation, terminology, AI evaluation, and interpretation.
 
 ## Status
 

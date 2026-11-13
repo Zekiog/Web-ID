@@ -29,7 +29,7 @@ export default function Process({ id = "process", kicker, title, lede: intro, st
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id={id} ref={ref} className="border-t border-outline-variant py-24 md:py-32">
+    <section id={id} ref={ref} className="relative z-0 overflow-x-clip border-t border-outline-variant py-24 md:py-32">
       <div className={`${container} grid gap-12 md:grid-cols-12 md:gap-16`}>
         <div className="md:col-span-4 md:sticky md:top-28 md:self-start">
           <p className={kickerClass}>{kicker}</p>

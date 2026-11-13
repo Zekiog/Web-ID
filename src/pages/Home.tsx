@@ -143,10 +143,6 @@ function ServiceReel() {
   });
   const x = useTransform(scrollYProgress, (value) => -distanceRef.current * value);
   const scaleX = useTransform(scrollYProgress, [0, 1], [0.08, 1]);
-  const indexLabel = useTransform(scrollYProgress, (value) => {
-    const next = Math.min(services.length, Math.max(1, Math.ceil(value * services.length)));
-    return String(next).padStart(2, "0");
-  });
 
   useLayoutEffect(() => {
     const measure = () => {
@@ -168,7 +164,7 @@ function ServiceReel() {
     <section
       id="services"
       ref={sectionRef}
-      className="relative border-t border-outline-variant"
+      className="relative z-10 overflow-x-clip border-t border-outline-variant"
       style={
         distance > 0
           ? { height: `calc(100svh + ${Math.round(distance * 1.45)}px)` }
@@ -184,12 +180,7 @@ function ServiceReel() {
               Say which ones you need in the request. A job can be one of them, or several.
             </p>
           </div>
-          <div>
-            <motion.div style={{ scaleX }} className="mb-4 h-px origin-left bg-primary" />
-            <motion.p aria-hidden="true" className="font-display text-5xl text-primary">
-              {indexLabel}
-            </motion.p>
-          </div>
+          <motion.div style={{ scaleX }} className="h-px origin-left bg-primary" />
         </div>
         <div ref={viewportRef} className="min-w-0 flex-1 overflow-hidden">
           <motion.ul ref={trackRef} style={{ x }} className="flex h-full items-center gap-5 pr-[8vw]">
