@@ -1,368 +1,277 @@
+import { useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  AlertTriangle,
-  Zap,
-  CheckCircle,
-  Globe,
-  RefreshCw,
-  Mic,
-  Network,
-  Sliders,
-  ClipboardCheck,
-  ArrowUpRight,
-} from "lucide-react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import CinematicHero from "../components/CinematicHero";
+import Process, { type Step } from "../components/Process";
+import { btnPrimary, btnSecondary, container, h2, kicker, lede } from "../lib/classes";
+import { useMediaQuery } from "../lib/useMediaQuery";
+import { usePageTitle } from "../lib/usePageTitle";
+
+const services = [
+  {
+    index: "01",
+    title: "Localisation",
+    body: "A text is adapted into Norwegian, Turkish, or English so the meaning, the tone, and the names survive the move.",
+  },
+  {
+    index: "02",
+    title: "Language quality",
+    body: "A translation is read against checks agreed up front: accuracy, terminology, style, and anything left out.",
+  },
+  {
+    index: "03",
+    title: "Terminology",
+    body: "A term list for the job, so one concept keeps one name from the first file to the last.",
+  },
+  {
+    index: "04",
+    title: "AI evaluation",
+    body: "Model output is read for factual fit, whether it followed the instruction, and whether the wording is safe to show.",
+  },
+  {
+    index: "05",
+    title: "Interpretation",
+    body: "Spoken transfer between Norwegian, Turkish, and English.",
+  },
+];
+
+const steps: Step[] = [
+  {
+    n: "01",
+    title: "Brief",
+    body: "You send the text, the languages, and what the text is for.",
+  },
+  {
+    n: "02",
+    title: "Criteria",
+    body: "The checks are named before the read: accuracy, terms, tone, completeness.",
+  },
+  {
+    n: "03",
+    title: "Review",
+    body: "The text, or the model output, is read against those checks.",
+  },
+  {
+    n: "04",
+    title: "Notes",
+    body: "You receive the issues, marked on the text, and a short summary.",
+  },
+];
 
 export default function Home() {
+  usePageTitle("Web-ID | Language quality in Norwegian, Turkish, and English");
+
   return (
-    <main className="pt-[80px]">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img src="/hero-bg.png" alt="" className="w-full h-full object-cover object-center" aria-hidden="true" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background"></div>
-        </div>
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 py-xl md:py-[120px] flex flex-col items-center text-center gap-md">
-        <span className="inline-flex items-center gap-2 bg-surface-container-low border border-surface-container-highest rounded-full px-sm py-xs font-label-caps text-[12px] text-on-surface-variant uppercase tracking-wider font-semibold">
-          Based in Norway 🇳🇴 | Serving Global Brands
-        </span>
-        <h1 className="font-h1 text-[48px] leading-[1.1] tracking-[-0.02em] font-semibold text-on-background max-w-3xl">
-          Global Reach.
-          <br />
-          Local Resonance.
-        </h1>
-        <p className="font-body-lg text-[18px] leading-[1.6] text-on-surface-variant max-w-2xl">
-          We combine enterprise-grade AI with expert human oversight to localize
-          your brand for the Nordic market and beyond. Faster, smarter, and
-          culturally flawless.
+    <main>
+      <CinematicHero
+        kicker="Oslo"
+        showSignal
+        title={
+          <>
+            Language quality
+            <span className="mt-1 block italic text-primary">for three languages.</span>
+          </>
+        }
+      >
+        <p className="text-lg leading-relaxed text-on-surface-variant">
+          Localisation, terminology, review of AI-written text, and interpretation. Norwegian,
+          Turkish, and English.
         </p>
-        <div className="flex flex-col sm:flex-row gap-sm mt-xs">
-          <Link
-            to="/request-services"
-            className="bg-primary text-on-primary font-button text-[14px] font-medium px-md py-sm rounded-DEFAULT hover:bg-on-primary-fixed-variant transition-colors shadow-sm"
-          >
-            Start Your Global Expansion
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Link to="/request-services" className={btnPrimary}>
+            Request a review
           </Link>
-          <a
-            href="#how-it-works"
-            className="bg-transparent text-on-background border border-surface-container-highest font-button text-[14px] font-medium px-md py-sm rounded-DEFAULT hover:bg-surface-container-low transition-colors inline-flex items-center justify-center"
-          >
-            Explore Our Workflow
+          <a href="#services" className={btnSecondary}>
+            See the work
           </a>
         </div>
-        </div>
-      </section>
+      </CinematicHero>
 
-      {/* Problem/Solution Section */}
-      <section className="bg-surface-container-low py-xl border-y border-surface-container-highest">
-        <div className="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-xl">
-          <div className="flex flex-col gap-sm">
-            <div className="flex items-center gap-2 text-error font-label-caps text-[12px] uppercase tracking-wider font-semibold mb-xs">
-              <AlertTriangle size={16} />
-              THE PROBLEM
-            </div>
-            <h2 className="font-h2 text-[30px] leading-[1.2] tracking-[-0.01em] font-semibold text-on-background">
-              Traditional translation is broken.
-            </h2>
-            <p className="font-body-md text-on-surface-variant">
-              Traditional agencies are slow and expensive. Pure AI translation lacks
-              cultural context and brand voice. You are forced to choose between
-              speed, cost, and quality.
-            </p>
-          </div>
-          <div className="bg-surface border border-surface-container-highest rounded-lg p-lg shadow-sm relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-10">
-              <Zap size={100} />
-            </div>
-            <div className="flex items-center gap-2 text-primary font-label-caps text-[12px] uppercase tracking-wider font-semibold mb-sm relative z-10">
-              <CheckCircle size={16} />
-              THE SOLUTION
-            </div>
-            <h3 className="font-h3 text-[24px] leading-[1.3] tracking-[-0.01em] font-semibold text-on-background mb-sm relative z-10">
-              The Hybrid Engine
-            </h3>
-            <p className="font-body-md text-on-surface-variant relative z-10">
-              Our proprietary AI agents handle the heavy lifting of translation and
-              context mapping, while expert human linguists ensure cultural
-              accuracy, nuance, and brand alignment. The result is flawless
-              localization at scale.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="max-w-[1200px] mx-auto px-6 py-xl" id="services">
-        <div className="text-center mb-xl">
-          <h2 className="font-h2 text-[30px] font-semibold text-on-background mb-sm">
-            Enterprise Localization Services
-          </h2>
-          <p className="font-body-md text-on-surface-variant max-w-2xl mx-auto">
-            Tailored solutions for brands expanding into complex linguistic markets.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-gutter">
-          <div className="bg-surface border border-surface-container-highest rounded-lg p-md hover:-translate-y-1 transition-transform duration-200">
-            <div className="w-12 h-12 bg-primary-container/20 rounded-DEFAULT flex items-center justify-center mb-md">
-              <Globe className="text-primary" size={24} />
-            </div>
-            <h3 className="font-h3 text-[24px] font-semibold text-on-background mb-xs">
-              Market Entry Localization
-            </h3>
-            <p className="font-body-sm text-[14px] text-on-surface-variant">
-              Comprehensive adaptation of your core product, website, and marketing
-              materials for a flawless launch in new regions.
-            </p>
-          </div>
-          <div className="bg-surface border border-surface-container-highest rounded-lg p-md hover:-translate-y-1 transition-transform duration-200">
-            <div className="w-12 h-12 bg-primary-container/20 rounded-DEFAULT flex items-center justify-center mb-md">
-              <RefreshCw className="text-primary" size={24} />
-            </div>
-            <h3 className="font-h3 text-[24px] font-semibold text-on-background mb-xs">
-              Global Content Retainer
-            </h3>
-            <p className="font-body-sm text-[14px] text-on-surface-variant">
-              Ongoing, high-volume localization for dynamic content, updates, and
-              campaigns integrated directly into your CI/CD pipeline.
-            </p>
-          </div>
-          <div className="bg-surface border border-surface-container-highest rounded-lg p-md hover:-translate-y-1 transition-transform duration-200">
-            <div className="w-12 h-12 bg-primary-container/20 rounded-DEFAULT flex items-center justify-center mb-md">
-              <Mic className="text-primary" size={24} />
-            </div>
-            <h3 className="font-h3 text-[24px] font-semibold text-on-background mb-xs">
-              Brand Voice Adaptation
-            </h3>
-            <p className="font-body-sm text-[14px] text-on-surface-variant">
-              Deep cultural consulting to ensure your brand's unique tone and
-              personality resonate authentically with local audiences.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* How it Works Section */}
-      <section className="bg-on-background text-surface py-xl" id="how-it-works">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-xl">
-            <h2 className="font-h2 text-[30px] font-semibold text-surface mb-sm">
-              The Workflow
-            </h2>
-            <p className="font-body-md text-outline-variant max-w-2xl mx-auto">
-              Precision engineering meets linguistic artistry.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-gutter relative">
-            <div className="relative z-10 flex flex-col gap-sm">
-              <div className="w-10 h-10 rounded-full bg-surface-tint/20 border border-surface-tint flex items-center justify-center font-button text-[14px] font-medium text-surface-tint mb-xs">
-                1
-              </div>
-              <h3 className="font-button text-[14px] font-medium text-surface">
-                Analyze &amp; Align
-              </h3>
-              <p className="font-body-sm text-[14px] text-outline-variant">
-                We establish explicit rubrics and evaluation frameworks, aligning
-                your content, brand guidelines, and target demographics to
-                accurately configure AI models.
-              </p>
-            </div>
-            <div className="relative z-10 flex flex-col gap-sm">
-              <div className="w-10 h-10 rounded-full bg-surface-tint/20 border border-surface-tint flex items-center justify-center font-button text-[14px] font-medium text-surface-tint mb-xs">
-                2
-              </div>
-              <h3 className="font-button text-[14px] font-medium text-surface">
-                AI-Powered Generation
-              </h3>
-              <p className="font-body-sm text-[14px] text-outline-variant">
-                Leveraging multi-model orchestration and agentic workflows, we
-                generate localized drafts prioritizing structural consistency and
-                adherence to guidelines.
-              </p>
-            </div>
-            <div className="relative z-10 flex flex-col gap-sm">
-              <div className="w-10 h-10 rounded-full bg-surface-tint/20 border border-surface-tint flex items-center justify-center font-button text-[14px] font-medium text-surface-tint mb-xs">
-                3
-              </div>
-              <h3 className="font-button text-[14px] font-medium text-surface">
-                Human Expert Verification
-              </h3>
-              <p className="font-body-sm text-[14px] text-outline-variant">
-                Native linguists conduct disciplined rubric-based reviews to inject
-                cultural nuance, ensuring flawless linguistic precision and context
-                mapping.
-              </p>
-            </div>
-            <div className="relative z-10 flex flex-col gap-sm">
-              <div className="w-10 h-10 rounded-full bg-surface-tint/20 border border-surface-tint flex items-center justify-center font-button text-[14px] font-medium text-surface-tint mb-xs">
-                4
-              </div>
-              <h3 className="font-button text-[14px] font-medium text-surface">
-                Deploy &amp; Scale
-              </h3>
-              <p className="font-body-sm text-[14px] text-outline-variant">
-                Final assets are delivered seamlessly via API or preferred formats,
-                integrated directly into your continuous integration pipelines for
-                global deployment.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Capabilities Section */}
-      <section className="bg-surface py-xl border-b border-surface-container-highest">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-xl">
-            <h2 className="font-h2 text-[30px] font-semibold text-on-background mb-sm">
-              Technical Capabilities
-            </h2>
-            <p className="font-body-md text-on-surface-variant max-w-2xl mx-auto">
-              Bridging the gap between specialized AI evaluation and
-              enterprise-grade localization.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-gutter">
-            <div className="bg-surface-container-lowest border border-surface-container-highest rounded-lg p-md shadow-sm">
-              <div className="w-10 h-10 bg-primary/10 rounded-DEFAULT flex items-center justify-center mb-sm">
-                <Network className="text-primary" size={20} />
-              </div>
-              <h3 className="font-h3 text-[24px] font-semibold text-on-background mb-xs">
-                Agent Orchestration Platform
-              </h3>
-              <p className="font-body-sm text-[14px] text-on-surface-variant mb-md">
-                Designing and deploying multi-step agent workflows to handle complex
-                localization tasks with guided setup and operational oversight.
-              </p>
-              <div className="flex gap-2">
-                <span className="inline-block bg-surface-container px-2 py-1 rounded-DEFAULT font-label-caps text-[10px] uppercase font-semibold text-on-surface-variant">
-                  Agents
-                </span>
-                <span className="inline-block bg-surface-container px-2 py-1 rounded-DEFAULT font-label-caps text-[10px] uppercase font-semibold text-on-surface-variant">
-                  Orchestration
-                </span>
-              </div>
-            </div>
-            <div className="bg-surface-container-lowest border border-surface-container-highest rounded-lg p-md shadow-sm">
-              <div className="w-10 h-10 bg-primary/10 rounded-DEFAULT flex items-center justify-center mb-sm">
-                <Sliders className="text-primary" size={20} />
-              </div>
-              <h3 className="font-h3 text-[24px] font-semibold text-on-background mb-xs">
-                Multi-Model Evaluation Harness
-              </h3>
-              <p className="font-body-sm text-[14px] text-on-surface-variant mb-md">
-                Comparative testing frameworks probing prompt adherence,
-                reliability, and failure modes across multiple LLMs for optimal
-                quality.
-              </p>
-              <div className="flex gap-2">
-                <span className="inline-block bg-surface-container px-2 py-1 rounded-DEFAULT font-label-caps text-[10px] uppercase font-semibold text-on-surface-variant">
-                  Evaluation
-                </span>
-                <span className="inline-block bg-surface-container px-2 py-1 rounded-DEFAULT font-label-caps text-[10px] uppercase font-semibold text-on-surface-variant">
-                  Benchmarking
-                </span>
-              </div>
-            </div>
-            <div className="bg-surface-container-lowest border border-surface-container-highest rounded-lg p-md shadow-sm">
-              <div className="w-10 h-10 bg-primary/10 rounded-DEFAULT flex items-center justify-center mb-sm">
-                <ClipboardCheck className="text-primary" size={20} />
-              </div>
-              <h3 className="font-h3 text-[24px] font-semibold text-on-background mb-xs">
-                AI Quality Rating
-              </h3>
-              <p className="font-body-sm text-[14px] text-on-surface-variant mb-md">
-                Rigorous assessment of AI-generated responses using explicit
-                criteria for safety, factuality, coherence, and user-intent
-                alignment.
-              </p>
-              <div className="flex gap-2">
-                <span className="inline-block bg-surface-container px-2 py-1 rounded-DEFAULT font-label-caps text-[10px] uppercase font-semibold text-on-surface-variant">
-                  Rubrics
-                </span>
-                <span className="inline-block bg-surface-container px-2 py-1 rounded-DEFAULT font-label-caps text-[10px] uppercase font-semibold text-on-surface-variant">
-                  Quality Assurance
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* AI QA Testing CTA Section */}
-      <section className="bg-gradient-to-br from-primary/10 to-primary/5 border-y border-primary/20 py-xl">
-        <div className="max-w-[1200px] mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 rounded-full px-sm py-xs font-label-caps text-[12px] text-primary uppercase tracking-wider font-semibold mb-md">
-            ✨ New Service / Ny Tjeneste
-          </div>
-          <h2 className="font-h2 text-[30px] font-semibold text-on-background mb-sm">
-            AI QA Testing — Flerspråklig Kvalitetssikring
-          </h2>
-          <p className="font-body-md text-on-surface-variant max-w-2xl mx-auto mb-md">
-            Automatiserte kvalitetstester for dine chatboter og KI-agenter på 10+
-            språk. Integrert i CI/CD, i samsvar med EUs AI Act. Utviklet for
-            norske bedrifter.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-sm justify-center">
-            <Link
-              to="/ai-qa-service"
-              className="bg-primary text-on-primary font-button text-[14px] font-medium px-md py-sm rounded-DEFAULT hover:bg-on-primary-fixed-variant transition-colors shadow-sm inline-flex items-center gap-2"
-            >
-              Learn More — Les Mer
-              <ArrowUpRight size={16} />
-            </Link>
-            <Link
-              to="/request-services"
-              className="bg-transparent text-on-background border border-surface-container-highest font-button text-[14px] font-medium px-md py-sm rounded-DEFAULT hover:bg-surface-container-low transition-colors inline-flex items-center justify-center"
-            >
-              Request a Quote
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust & Authority Section */}
-      <section className="max-w-[1200px] mx-auto px-6 py-xl" id="about">
-        <div className="grid md:grid-cols-2 gap-xl items-center">
-          <div>
-            <h2 className="font-h2 text-[30px] font-semibold text-on-background mb-sm">
-              Led by Expertise
-            </h2>
-            <p className="font-body-md text-on-surface-variant mb-md">
-              Our leadership combines decades of experience in both advanced
-              artificial intelligence evaluation and deep linguistic study. We bring
-              disciplined rubric-based review and hands-on experimentation in
-              multi-model workflows to ensure unparalleled localization quality.
-            </p>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 text-primary font-button text-[14px] font-medium hover:underline"
-            >
-              View Founder's Profile &amp; Credentials
-              <ArrowUpRight size={16} />
-            </a>
-          </div>
-          <div className="bg-surface-container-lowest border border-surface-container-highest rounded-lg p-sm shadow-sm flex items-center gap-md">
-            <div className="w-24 h-24 rounded-DEFAULT overflow-hidden shrink-0 border border-surface-container-highest">
-              <img src="/founder.png" alt="Mehmet Zeki Oguz" className="w-full h-full object-cover object-top" />
-            </div>
-            <div>
-              <h3 className="font-h3 text-[24px] font-semibold text-on-background">
-                Mehmet Zeki Oguz
-              </h3>
-              <p className="font-body-sm text-[14px] text-on-surface-variant mb-xs">
-                AI Agent Evaluation Specialist &amp; Lead Linguist
-              </p>
-              <div className="flex gap-2 flex-wrap">
-                <span className="inline-block bg-surface-container px-2 py-1 rounded-DEFAULT font-label-caps text-[10px] uppercase font-semibold text-on-surface-variant">
-                  Multi-Model Evaluation
-                </span>
-                <span className="inline-block bg-surface-container px-2 py-1 rounded-DEFAULT font-label-caps text-[10px] uppercase font-semibold text-on-surface-variant">
-                  Nordic Linguistics
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Services />
+      <Process
+        kicker="Process"
+        title="How a job runs."
+        lede="The same sequence, whether the text was written by a person or a model."
+        steps={steps}
+      />
+      <About />
+      <AiBand />
     </main>
+  );
+}
+
+function Services() {
+  const reduce = useReducedMotion();
+  const narrow = useMediaQuery("(max-width: 767px)");
+
+  if (reduce || narrow) return <ServiceStack />;
+  return <ServiceReel />;
+}
+
+function ServiceStack() {
+  return (
+    <section id="services" className="border-t border-outline-variant py-24 md:py-32">
+      <div className={container}>
+        <p className={kicker}>Services</p>
+        <h2 className={`${h2} mt-4 max-w-xl`}>Five kinds of work.</h2>
+        <p className={`${lede} mt-5`}>
+          Say which ones you need in the request. A job can be one of them, or several.
+        </p>
+        <ul className="mt-12 grid gap-4 md:grid-cols-2">
+          {services.map((service) => (
+            <li key={service.index} className="border border-outline-variant bg-surface-container-low p-6 md:p-8">
+              <p className="font-display text-3xl text-primary">{service.index}</p>
+              <h3 className="mt-6 font-display text-3xl tracking-tight text-on-surface">{service.title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-on-surface-variant">{service.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function ServiceReel() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLUListElement>(null);
+  const distanceRef = useRef(0);
+  const [distance, setDistance] = useState(0);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+  const x = useTransform(scrollYProgress, (value) => -distanceRef.current * value);
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0.08, 1]);
+  const indexLabel = useTransform(scrollYProgress, (value) => {
+    const next = Math.min(services.length, Math.max(1, Math.ceil(value * services.length)));
+    return String(next).padStart(2, "0");
+  });
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const view = viewportRef.current;
+      const track = trackRef.current;
+      if (!view || !track) return;
+      const next = Math.max(0, track.scrollWidth - view.clientWidth);
+      distanceRef.current = next;
+      setDistance(next);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    if (viewportRef.current) observer.observe(viewportRef.current);
+    if (trackRef.current) observer.observe(trackRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      id="services"
+      ref={sectionRef}
+      className="relative border-t border-outline-variant"
+      style={
+        distance > 0
+          ? { height: `calc(100svh + ${Math.round(distance * 1.45)}px)` }
+          : { minHeight: "100svh" }
+      }
+    >
+      <div className="sticky top-0 flex h-svh items-stretch overflow-hidden">
+        <div className="flex w-[min(34vw,22rem)] shrink-0 flex-col justify-between py-24 pl-[max(1.25rem,calc((100vw-72rem)/2))] pr-8">
+          <div>
+            <p className={kicker}>Services</p>
+            <h2 className={`${h2} mt-4`}>Five kinds of work.</h2>
+            <p className="mt-5 max-w-xs text-base leading-relaxed text-on-surface-variant">
+              Say which ones you need in the request. A job can be one of them, or several.
+            </p>
+          </div>
+          <div>
+            <motion.div style={{ scaleX }} className="mb-4 h-px origin-left bg-primary" />
+            <motion.p aria-hidden="true" className="font-display text-5xl text-primary">
+              {indexLabel}
+            </motion.p>
+          </div>
+        </div>
+        <div ref={viewportRef} className="min-w-0 flex-1 overflow-hidden">
+          <motion.ul ref={trackRef} style={{ x }} className="flex h-full items-center gap-5 pr-[8vw]">
+            {services.map((service) => (
+              <li
+                key={service.index}
+                className="flex h-[min(68vh,32rem)] w-[min(70vw,26rem)] shrink-0 flex-col justify-between border border-outline-variant bg-surface-container-low p-8"
+              >
+                <p className="font-display text-4xl text-primary">{service.index}</p>
+                <div>
+                  <h3 className="font-display text-4xl tracking-tight text-on-surface">{service.title}</h3>
+                  <p className="mt-4 text-base leading-relaxed text-on-surface-variant">{service.body}</p>
+                </div>
+              </li>
+            ))}
+          </motion.ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section id="about" className="border-t border-outline-variant py-24 md:py-32">
+      <div className={`${container} grid items-center gap-12 md:grid-cols-12`}>
+        <div className="md:col-span-5">
+          <div className="aspect-[4/5] overflow-hidden border border-outline-variant bg-surface-container">
+            <img
+              src="/founder.jpg"
+              alt="Portrait of Mehmet Zeki Oguz"
+              width={1024}
+              height={1024}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover object-[center_18%]"
+            />
+          </div>
+        </div>
+        <div className="md:col-span-6 md:col-start-7">
+          <p className={kicker}>About</p>
+          <h2 className={`${h2} mt-4`}>Mehmet Zeki Oguz</h2>
+          <p className="mt-4 text-lg text-primary">Multilingual quality specialist</p>
+          <p className={`${lede} mt-5`}>
+            Based in Oslo. The work covers localisation, language quality, terminology, evaluation
+            of AI-written text, and interpretation, in Norwegian, Turkish, and English.
+          </p>
+          <ul className="mt-10 space-y-2">
+            <li className="font-display text-4xl text-on-surface" lang="nb">
+              Norsk
+            </li>
+            <li className="font-display text-4xl text-on-surface" lang="tr">
+              Türkçe
+            </li>
+            <li className="font-display text-4xl text-on-surface" lang="en">
+              English
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AiBand() {
+  return (
+    <section className="border-t border-outline-variant py-24 md:py-28">
+      <div className={`${container} grid gap-8 md:grid-cols-12 md:items-end`}>
+        <div className="md:col-span-7">
+          <p className={kicker}>AI-written text</p>
+          <h2 className={`${h2} mt-4`}>A separate read for model output.</h2>
+          <p className={`${lede} mt-5`}>
+            The notes cover accuracy, the instruction, terminology, and wording. The marked text
+            can be passed to the people who maintain the system.
+          </p>
+        </div>
+        <div className="md:col-span-5 md:text-right">
+          <Link to="/ai-qa-service" className={btnSecondary}>
+            How a review works
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }

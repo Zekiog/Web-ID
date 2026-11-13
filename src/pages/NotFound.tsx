@@ -1,36 +1,31 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- *
- * 404 Not Found Page — displayed when the user navigates to a route
- * that doesn't exist. Provides helpful navigation links.
  */
 import { Link } from "react-router-dom";
-import { SearchX, Home, ArrowUpRight } from "lucide-react";
+import { btnPrimary, btnSecondary } from "../lib/classes";
+import { usePageTitle } from "../lib/usePageTitle";
+
 export default function NotFound() {
+  usePageTitle("Web-ID | Page not found");
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-surface-bright px-6 text-center">
-      <div className="max-w-md mx-auto w-full flex flex-col items-center gap-md">
-        <SearchX size={64} className="text-on-surface-variant" />
-        <h1 className="font-h2 text-[32px] font-semibold text-on-surface">Page not found</h1>
-        <p className="font-body-md text-on-surface-variant">
-          The page you're looking for doesn't exist or has been moved.
+    <main className="flex min-h-[70vh] items-center px-5 pt-28 pb-16 md:px-8">
+      <div className="mx-auto w-full max-w-xl">
+        <p className="font-sans text-[0.72rem] font-medium uppercase tracking-[0.22em] text-primary">404</p>
+        <h1 className="mt-4 font-display text-5xl tracking-tight text-on-surface">Page not found</h1>
+        <p className="mt-4 text-lg leading-relaxed text-on-surface-variant">
+          That address is not on this site.
         </p>
-        <div className="flex flex-col sm:flex-row gap-sm mt-md">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 px-sm py-xs rounded-md bg-primary text-on-primary font-button hover:bg-primary-container transition-colors"
-          >
-            <Home size={16} /> Return to Home
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Link to="/" className={btnPrimary}>
+            Back to home
           </Link>
-          <Link
-            to="/request-services"
-            className="inline-flex items-center gap-2 px-sm py-xs rounded-md bg-surface-container text-on-surface font-button hover:bg-surface-container-high transition-colors"
-          >
-            Request Services <ArrowUpRight size={16} />
+          <Link to="/request-services" className={btnSecondary}>
+            Request a review
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
