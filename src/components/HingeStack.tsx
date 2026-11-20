@@ -1,5 +1,6 @@
-import { motion, useReducedMotion, useTransform, type MotionValue } from "motion/react";
-import { useRef } from "react";
+import { cancelFrame, frame } from "motion-dom";
+import { motion, useMotionValue, useReducedMotion, useTransform, type MotionValue } from "motion/react";
+import { useLayoutEffect, useRef } from "react";
 import { container, h2, kicker as kickerClass, lede as ledeClass } from "../lib/classes";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import { useScrub } from "../lib/useScrub";
@@ -18,6 +19,8 @@ type HingeStackProps = {
   items: HingeItem[];
   columns?: 1 | 2;
 };
+
+const FOLD_VH = 32;
 
 export default function HingeStack(props: HingeStackProps) {
   const reduce = useReducedMotion();
@@ -50,7 +53,8 @@ function HingeList({ id, kicker, title, lede, items, columns = 2 }: HingeStackPr
 
 function HingePin({ id, kicker, title, lede, items }: HingeStackProps) {
   const ref = useRef<HTMLElement>(null);
-  const progress = useScrub(ref, ["start start", "end end"]);
+  const target = useScrub(ref, ["start start", "end end"]);
+  const progress = useFollowScroll(target);
   const folds = Math.max(1, items.length - 1);
   const active = useTransform(progress, (value) => items[activeSlot(value, items.length)].index);
   const rule = useTransform(progress, [0, 1], [0.08, 1]);
@@ -60,7 +64,7 @@ function HingePin({ id, kicker, title, lede, items }: HingeStackProps) {
       id={id}
       ref={ref}
       className="relative border-t border-outline-variant"
-      style={{ height: `calc(100svh + ${folds * 64}vh)` }}
+      style={{ height: `calc(100svh + ${folds * FOLD_VH}vh)` }}
     >
       <div className="sticky top-0 flex h-svh items-center">
         <div className={`${container} grid w-full items-center gap-10 md:grid-cols-12`}>
@@ -77,8 +81,8 @@ function HingePin({ id, kicker, title, lede, items }: HingeStackProps) {
             <motion.div style={{ scaleX: rule }} className="mt-6 h-px w-28 origin-left bg-primary" />
           </div>
           <div className="md:col-span-7">
-            <div className="relative h-[min(30rem,62vh)] overflow-hidden">
-              <div className="absolute inset-0" style={{ perspective: "1500px" }}>
+            <div className="relative h-[min(32rem,64vh)] overflow-hidden">
+              <div className="absolute inset-x-10 bottom-8 top-3" style={{ perspective: "2100px" }}>
                 <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
                   {items.map((item, index) => (
                     <HingeCard
@@ -92,7 +96,7 @@ function HingePin({ id, kicker, title, lede, items }: HingeStackProps) {
                 </div>
               </div>
               <div
-                className="pointer-events-none absolute inset-x-0 top-3 z-30 flex -translate-y-1/2 items-center"
+                className="pointer-events-none absolute inset-x-10 top-3 z-30 flex -translate-y-1/2 items-center"
                 aria-hidden="true"
               >
                 <span className="size-1.5 bg-primary" />
@@ -105,6 +109,28 @@ function HingePin({ id, kicker, title, lede, items }: HingeStackProps) {
       </div>
     </section>
   );
+}
+
+function useFollowScroll(target: MotionValue<number>) {
+  const smooth = useMotionValue(0);
+
+  useLayoutEffect(() => {
+    smooth.set(target.get());
+    const step = () => {
+      const goal = target.get();
+      const current = smooth.get();
+      const delta = goal - current;
+      if (Math.abs(delta) < 0.0012) {
+        if (current !== goal) smooth.set(goal);
+        return;
+      }
+      smooth.set(current + delta * 0.22);
+    };
+    frame.update(step, true);
+    return () => cancelFrame(step);
+  }, [smooth, target]);
+
+  return smooth;
 }
 
 function HingeTick({
@@ -135,7 +161,11 @@ function HingeCard({
 }) {
   const rotateX = useTransform(progress, (value) => hingePose(value, index, total).rotateX);
   const opacity = useTransform(progress, (value) => hingePose(value, index, total).opacity);
-  const shade = useTransform(rotateX, (deg) => (Math.abs(deg) / 88) * 0.55);
+  const shade = useTransform(rotateX, (deg) => {
+    const angle = Math.abs(deg);
+    if (angle <= 45) return (angle / 45) * 0.08;
+    return 0.08 + ((angle - 45) / 41) * 0.5;
+  });
 
   return (
     <motion.article
@@ -144,8 +174,9 @@ function HingeCard({
         opacity,
         zIndex: total - index,
         transformOrigin: "top center",
+        pointerEvents: "none",
       }}
-      className={`absolute inset-x-0 bottom-0 top-3 flex flex-col justify-between border border-outline-variant px-10 py-8 [backface-visibility:hidden] md:px-14 md:py-10 ${
+      className={`absolute inset-0 flex flex-col justify-between border border-outline-variant px-8 py-8 [backface-visibility:hidden] md:px-10 ${
         index % 2 === 0 ? "bg-surface-container-low" : "bg-surface-container"
       }`}
     >
@@ -165,19 +196,24 @@ function HingeCard({
 
 function activeSlot(progress: number, total: number) {
   const folds = Math.max(1, total - 1);
-  return Math.min(total - 1, Math.max(0, Math.floor(progress * folds + 0.22)));
+  return Math.min(total - 1, Math.max(0, Math.floor(progress * folds + 0.12)));
 }
 
 function hingePose(progress: number, index: number, total: number) {
   const folds = Math.max(1, total - 1);
-  if (index >= total - 1) return { rotateX: 0, opacity: 1 };
+  const local = progress * folds - index;
 
-  const start = index / folds;
-  const end = (index + 1) / folds;
-  const t = (progress - start) / (end - start);
-  if (t <= 0) return { rotateX: 0, opacity: 1 };
-  if (t >= 1) return { rotateX: 88, opacity: 0 };
+  if (index === total - 1) {
+    if (local <= -0.1) return { rotateX: 0, opacity: 0 };
+    if (local >= 0) return { rotateX: 0, opacity: 1 };
+    return { rotateX: 0, opacity: (local + 0.1) / 0.1 };
+  }
 
-  const opacity = t < 0.78 ? 1 : Math.max(0, 1 - (t - 0.78) / 0.22);
-  return { rotateX: 88 * t, opacity };
+  if (local <= -0.1) return { rotateX: 0, opacity: 0 };
+  if (local < 0) return { rotateX: 0, opacity: (local + 0.1) / 0.1 };
+  if (local >= 1) return { rotateX: 86, opacity: 0 };
+
+  const rotateX = 86 * Math.min(1, local / 0.84);
+  const opacity = local < 0.7 ? 1 : Math.max(0, 1 - (local - 0.7) / 0.22);
+  return { rotateX, opacity };
 }
