@@ -1,13 +1,8 @@
 import { useRef, type ReactNode } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "motion/react";
+import { motion, useReducedMotion, useTransform, type MotionValue } from "motion/react";
 import { container, display, kicker as kickerClass } from "../lib/classes";
 import { useMediaQuery } from "../lib/useMediaQuery";
+import { useScrub } from "../lib/useScrub";
 
 const SEEDS = [
   0.35, 0.72, 0.48, 0.9, 0.55, 0.28, 0.8, 0.42, 0.66, 0.33, 0.77, 0.5, 0.22, 0.84,
@@ -70,17 +65,15 @@ function StaticHero({ kicker, title, showSignal, children }: HeroProps) {
 
 function PinnedHero({ kicker, title, showSignal, children }: HeroProps) {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
+  const scrollYProgress = useScrub(ref, ["start start", "end end"]);
   const clip = useTransform(scrollYProgress, [0, 1], [
     "inset(0% 0% 0% 0% round 0px)",
     "inset(11% 6% 18% 6% round 28px)",
   ]);
-  const imgY = useTransform(scrollYProgress, [0, 1], ["-7%", "8%"]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-8%", "10%"]);
   const imgScale = useTransform(scrollYProgress, [0, 1], [1.18, 1]);
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -48]);
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -72]);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, -24]);
   const rule = useTransform(scrollYProgress, [0.04, 0.55], [0.08, 1]);
 
   return (
@@ -106,7 +99,9 @@ function PinnedHero({ kicker, title, showSignal, children }: HeroProps) {
             {showSignal ? <Signal progress={scrollYProgress} /> : null}
           </motion.div>
           <motion.div style={{ scaleX: rule }} className="mt-6 h-px w-36 origin-left bg-primary" />
-          <div className="mt-6 max-w-2xl">{children}</div>
+          <motion.div style={{ y: copyY }} className="mt-6 max-w-2xl">
+            {children}
+          </motion.div>
         </div>
       </div>
     </section>

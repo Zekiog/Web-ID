@@ -2,13 +2,11 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
-import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 import CinematicHero from "../components/CinematicHero";
+import HingeStack from "../components/HingeStack";
 import Process, { type Step } from "../components/Process";
-import { btnPrimary, btnSecondary, container, h2, kicker, lede } from "../lib/classes";
-import { useMediaQuery } from "../lib/useMediaQuery";
+import { btnPrimary, btnSecondary, container, h2, lede } from "../lib/classes";
 import { usePageTitle } from "../lib/usePageTitle";
 
 const checks = [
@@ -84,7 +82,14 @@ export default function AIQAService() {
           </a>
         </div>
       </CinematicHero>
-      <Checks />
+      <HingeStack
+        id="checks"
+        kicker="Checks"
+        title="Four questions for every answer."
+        lede="The same four, applied to the output you send."
+        items={checks}
+        columns={1}
+      />
       <Process
         id="ai-process"
         kicker="Process"
@@ -113,106 +118,3 @@ export default function AIQAService() {
   );
 }
 
-function Checks() {
-  const reduce = useReducedMotion();
-  const narrow = useMediaQuery("(max-width: 767px)");
-
-  return (
-    <section id="checks" className="border-t border-outline-variant">
-      {reduce || narrow ? <CheckList /> : <PinnedChecks />}
-    </section>
-  );
-}
-
-function CheckList() {
-  return (
-    <div className={`${container} py-24 md:py-32`}>
-      <p className={kicker}>Checks</p>
-      <h2 className={`${h2} mt-4 max-w-xl`}>Four questions for every answer.</h2>
-      <ul className="mt-12 grid gap-4">
-        {checks.map((item) => (
-          <li key={item.index} className="border border-outline-variant bg-surface-container-low p-6 md:p-8">
-            <p className="font-display text-3xl text-primary">{item.index}</p>
-            <h3 className="mt-4 font-display text-3xl text-on-surface">{item.title}</h3>
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-on-surface-variant">{item.body}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function PinnedChecks() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-
-  return (
-    <div ref={ref} className="relative h-[320vh]">
-      <div className="sticky top-0 flex h-svh items-center overflow-hidden">
-        <div className={`${container} grid w-full items-center gap-10 md:grid-cols-12`}>
-          <div className="md:col-span-5">
-            <p className={kicker}>Checks</p>
-            <h2 className={`${h2} mt-4`}>Four questions for every answer.</h2>
-            <p className={`${lede} mt-5`}>
-              The same four, applied to the output you send.
-            </p>
-          </div>
-          <div className="relative h-[min(24rem,58vh)] md:col-span-7">
-            {checks.map((item, index) => (
-              <CheckCard
-                key={item.index}
-                item={item}
-                index={index}
-                total={checks.length}
-                progress={scrollYProgress}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CheckCard({
-  item,
-  index,
-  total,
-  progress,
-}: {
-  item: (typeof checks)[number];
-  index: number;
-  total: number;
-  progress: MotionValue<number>;
-}) {
-  const opacity = useTransform(progress, (value) => {
-    const local = value * total - index;
-    let amount = 0;
-    if (local < -0.25) amount = 0;
-    else if (local < 0.08) amount = (local + 0.25) / 0.33;
-    else if (local < 0.72 || index === total - 1) amount = 1;
-    else if (local < 1) amount = 1 - (local - 0.72) / 0.28;
-    else amount = 0;
-    if (index === 0 && value < 0.02) amount = 1;
-    return Math.min(1, Math.max(0, amount));
-  });
-  const scale = useTransform(opacity, [0, 1], [0.96, 1]);
-  const y = useTransform(opacity, [0, 1], [24, 0]);
-  const pointerEvents = useTransform(opacity, (value) => (value > 0.45 ? "auto" : "none"));
-
-  return (
-    <motion.article
-      style={{ opacity, scale, y, pointerEvents }}
-      className="absolute inset-0 flex flex-col justify-between border border-outline-variant bg-surface-container-low p-8 md:p-10"
-    >
-      <p className="font-display text-4xl text-primary">{item.index}</p>
-      <div>
-        <h3 className="font-display text-4xl tracking-tight text-on-surface">{item.title}</h3>
-        <p className="mt-4 max-w-lg text-lg leading-relaxed text-on-surface-variant">{item.body}</p>
-      </div>
-    </motion.article>
-  );
-}

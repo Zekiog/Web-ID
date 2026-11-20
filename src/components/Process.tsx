@@ -1,7 +1,8 @@
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { motion, useReducedMotion, useTransform, type MotionValue } from "motion/react";
 import { container, h2, kicker as kickerClass, lede } from "../lib/classes";
 import { useMediaQuery } from "../lib/useMediaQuery";
+import { useScrub } from "../lib/useScrub";
 
 export type Step = {
   n: string;
@@ -22,10 +23,7 @@ export default function Process({ id = "process", kicker, title, lede: intro, st
   const reduce = useReducedMotion();
   const narrow = useMediaQuery("(max-width: 767px)");
   const motionOn = reduce !== true && !narrow;
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 72%", "end 55%"],
-  });
+  const scrollYProgress = useScrub(ref, ["start 72%", "end 55%"]);
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
@@ -36,7 +34,7 @@ export default function Process({ id = "process", kicker, title, lede: intro, st
           <h2 className={`${h2} mt-4`}>{title}</h2>
           {intro ? <p className={`${lede} mt-5`}>{intro}</p> : null}
         </div>
-        <ol className="relative md:col-span-8">
+        <ol className="relative md:col-span-8" style={motionOn ? { perspective: "900px" } : undefined}>
           <div
             className="absolute bottom-3 left-3 top-3 w-px bg-outline-variant"
             aria-hidden="true"
@@ -85,6 +83,15 @@ function ProcessStep({
     [Math.max(0, start - 0.04), Math.min(1, start + 0.14)],
     [index === 0 ? 0 : 14, 0],
   );
+  const rotateX = useTransform(progress, (value) => {
+    if (index === 0) return 0;
+    const from = Math.max(0, start - 0.02);
+    const to = Math.min(1, start + 0.2);
+    if (value <= from) return 8;
+    if (value >= to) return 0;
+    return 8 * (1 - (value - from) / (to - from));
+  });
+  const opacity = useTransform(rotateX, [8, 0], [0.72, 1]);
 
   return (
     <li className="relative grid grid-cols-[4.5rem_1fr] gap-4 py-7 first:pt-1 last:pb-1 md:gap-6 md:py-9 [&:last-child>div:last-child]:border-b-0 [&:last-child>div:last-child]:pb-0">
@@ -97,12 +104,29 @@ function ProcessStep({
           <span className="block font-display text-3xl leading-none text-primary">{step.n}</span>
         )}
       </div>
-      <div className="border-b border-outline-variant pb-7 last:border-b-0 md:pb-9">
-        <h3 className="font-display text-[1.75rem] leading-tight tracking-[-0.02em] text-on-surface">
-          {step.title}
-        </h3>
-        <p className="mt-2 max-w-xl text-base leading-relaxed text-on-surface-variant">{step.body}</p>
-      </div>
+      {motionOn ? (
+        <motion.div
+          style={{ rotateX, opacity, transformOrigin: "top center" }}
+          className="border-b border-outline-variant pb-7 last:border-b-0 md:pb-9"
+        >
+          <StepCopy step={step} />
+        </motion.div>
+      ) : (
+        <div className="border-b border-outline-variant pb-7 last:border-b-0 md:pb-9">
+          <StepCopy step={step} />
+        </div>
+      )}
     </li>
+  );
+}
+
+function StepCopy({ step }: { step: Step }) {
+  return (
+    <>
+      <h3 className="font-display text-[1.75rem] leading-tight tracking-[-0.02em] text-on-surface">
+        {step.title}
+      </h3>
+      <p className="mt-2 max-w-xl text-base leading-relaxed text-on-surface-variant">{step.body}</p>
+    </>
   );
 }

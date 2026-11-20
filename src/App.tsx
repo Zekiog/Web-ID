@@ -4,6 +4,7 @@
  */
 import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useLenis } from "lenis/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -21,11 +22,17 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
+  const lenis = useLenis();
 
   useEffect(() => {
     const id = hash.replace(/^#/, "");
+    const toTop = () => {
+      if (lenis) lenis.scrollTo(0, { immediate: true });
+      else window.scrollTo(0, 0);
+    };
+
     if (!id) {
-      window.scrollTo(0, 0);
+      toTop();
       return;
     }
 
@@ -34,18 +41,19 @@ function ScrollToTop() {
     const tick = () => {
       const target = document.getElementById(id);
       if (target) {
-        target.scrollIntoView();
+        if (lenis) lenis.scrollTo(target, { immediate: true, offset: -88 });
+        else target.scrollIntoView();
         return;
       }
       if (performance.now() - started > 2000) {
-        window.scrollTo(0, 0);
+        toTop();
         return;
       }
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [pathname, hash]);
+  }, [hash, lenis, pathname]);
 
   return null;
 }
