@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
         <section>
           <h2 className="font-h2 text-[24px] text-on-surface mb-4 font-semibold">1. Introduction</h2>
           <p className="font-body-md leading-relaxed mb-4">
-            Welcome to multilingual.no. We respect your privacy and are committed to protecting your personal data. This Privacy Policy informs you about how we look after your personal data when you visit our website or use our B2B localization services, and tells you about your privacy rights and how the law protects you.
+            Welcome to multilingual.no. We respect your privacy and are committed to protecting your personal data. This Privacy Policy informs you about how we look after your personal data when you visit our website or use our B2B localisation, terminology, review, and interpretation services, and tells you about your privacy rights and how the law protects you.
           </p>
           <p className="font-body-md leading-relaxed">
             This policy aims to give you information on how we collect and process your personal data in strict compliance with the General Data Protection Regulation (GDPR) (EU) 2016/679 and the Norwegian Personal Data Act.
@@ -49,14 +49,14 @@ export default function PrivacyPolicy() {
             <li><strong>Contact Data:</strong> Business email address, telephone numbers, and billing address.</li>
             <li><strong>Transaction Data:</strong> Details about payments to and from you and other details of services you have purchased from us.</li>
             <li><strong>Technical Data:</strong> Internet protocol (IP) address, browser type and version, time zone setting and location, browser plug-in types.</li>
-            <li><strong>Content Data:</strong> Files, documents, and text provided to us for the purpose of localization and translation.</li>
+            <li><strong>Content Data:</strong> Files, documents, and text provided to us for localisation, translation, terminology, or review.</li>
           </ul>
         </section>
 
         <section>
           <h2 className="font-h2 text-[24px] text-on-surface mb-4 font-semibold">4. Use of AI and Third-Party Sub-Processors</h2>
           <p className="font-body-md leading-relaxed mb-4">
-            Our hybrid localization engine utilizes enterprise-grade Artificial Intelligence. When processing your content, we ensure that:
+            Where a job includes text produced by a language model, that content may be sent to a model provider for the review. When that happens, we ensure that:
           </p>
           <ul className="list-disc pl-6 space-y-2 font-body-md">
             <li>Data processed through our integrated LLMs (Large Language Models) are submitted via Zero-Data-Retention enterprise APIs.</li>

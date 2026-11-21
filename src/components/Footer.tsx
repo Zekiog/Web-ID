@@ -4,6 +4,7 @@ import { container, kicker } from "../lib/classes";
 const pageLinks = [
   { to: "/", label: "Home" },
   { to: "/ai-qa-service", label: "AI review" },
+  { to: "/cv", label: "CV" },
   { to: "/request-services", label: "Request a review" },
 ];
 

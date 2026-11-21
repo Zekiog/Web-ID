@@ -18,7 +18,13 @@ const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 const Impressum = lazy(() => import("./pages/Impressum"));
 const AIQAService = lazy(() => import("./pages/AIQAService"));
+const Cv = lazy(() => import("./pages/Cv"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+
+function AtHome() {
+  if (window.location.hostname === "cv.multilingual.no") return <Cv />;
+  return <Home />;
+}
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -80,7 +86,8 @@ export default function App() {
             <ErrorBoundary>
               <Suspense fallback={<RouteFallback />}>
                 <Routes>
-                  <Route path="/" element={<Home />} />
+                  <Route path="/" element={<AtHome />} />
+                  <Route path="/cv" element={<Cv />} />
                   <Route path="/request-services" element={<RequestServices />} />
                   <Route path="/ai-qa-service" element={<AIQAService />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />

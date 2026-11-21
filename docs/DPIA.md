@@ -76,7 +76,7 @@ User submits CV/LinkedIn URL
 
 - **End users** (individuals): Professionals seeking identity trust scores
 - **Enterprise candidates**: Individuals submitted via B2B batch API (Phase 4)
-- **Website visitors**: General visitors to cv.multilingual.no
+- **Website visitors**: General visitors to multilingual.no and cv.multilingual.no
 
 ---
 
@@ -278,7 +278,7 @@ Under Art. 36 GDPR, consultation is required if:
 | Data Processing Agreement | `~/.hermes/docs/foundation/legal/DATA_PROCESSING_AGREEMENT.md` |
 | Security Policy | `~/.hermes/docs/foundation/SECURITY.md` |
 | Web-ID Roadmap | `~/.hermes/docs/foundation/web-id/ROADMAP.md` |
-| EU AI Act Readiness | `cv.multilingual.no/ai-qa-service` (landing page) |
+| EU AI Act Readiness | `https://www.multilingual.no/ai-qa-service` (landing page) |
 | Firestore Security Rules | `firestore.rules` (repo root) |
 | Rate Limiting Implementation | `src/lib/rateLimit.ts` |
 | Cookie Consent Banner | `src/components/CookieConsent.tsx` |

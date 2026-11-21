@@ -20,17 +20,17 @@ export default function TermsOfService() {
         <section>
           <h2 className="font-h2 text-[24px] text-on-surface mb-4 font-semibold">1. Agreement to Terms</h2>
           <p className="font-body-md leading-relaxed">
-            These Terms of Service ("Terms") constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("Client"), and multilingual.no ("Company", "we", "us", or "our"), concerning your access to and use of our localization, translation, and AI agent orchestration services (the "Services"). By procuring our Services, you agree to be bound by these Terms.
+            These Terms of Service ("Terms") constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("Client"), and multilingual.no ("Company", "we", "us", or "our"), concerning your access to and use of our localisation, translation, terminology, review of AI-written text, and interpretation services (the "Services"). By procuring our Services, you agree to be bound by these Terms.
           </p>
         </section>
 
         <section>
           <h2 className="font-h2 text-[24px] text-on-surface mb-4 font-semibold">2. Provision of Services</h2>
           <p className="font-body-md leading-relaxed mb-4">
-            We employ a hybrid methodology leveraging enterprise-grade Artificial Intelligence combined with expert human verification.
+            The services are localisation, translation, terminology, review of AI-written text, and interpretation.
           </p>
           <ul className="list-disc pl-6 space-y-2 font-body-md">
-            <li>We will provide the localization services with reasonable skill and care, matching industry standards.</li>
+            <li>We will provide the services with reasonable skill and care, matching industry standards.</li>
             <li>Delivery timelines are estimated logically but are not legally binding unless an explicit SLA is signed.</li>
             <li>We reserve the right to refuse service for content that is illegal, defamatory, or violates international sanctions.</li>
           </ul>
@@ -54,7 +54,7 @@ export default function TermsOfService() {
             <strong>Client IP:</strong> All right, title, and interest in the source materials and the final translated deliverables shall remain the sole property of the Client, contingent upon full payment of all assigned fees.
           </p>
           <p className="font-body-md leading-relaxed">
-            <strong>Company IP:</strong> multilingual.no retains all rights to its proprietary translation memories, AI workflows, agentic methodologies, software, and generalized glossaries developed during the execution of the services.
+            <strong>Company IP:</strong> multilingual.no retains all rights to its proprietary translation memories, review workflows, software, and generalized glossaries developed during the execution of the services.
           </p>
         </section>
 
