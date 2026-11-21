@@ -159,6 +159,9 @@ function About() {
             Based in Oslo. The work covers localisation, language quality, terminology, evaluation
             of AI-written text, and interpretation, in Norwegian, Turkish, and English.
           </p>
+          <Link to="/cv" className={`${btnSecondary} mt-8`}>
+            Read the CV
+          </Link>
           <ul className="mt-10 space-y-2">
             {languages.map((language, index) => (
               <LanguageLine

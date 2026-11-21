@@ -12,7 +12,7 @@ export default function Impressum() {
           Impressum / Legal Notice
         </h1>
         <p className="font-body-md text-on-surface-variant">
-          Information in accordance to European e-commerce directives.
+          Information in accordance with European e-commerce directives.
         </p>
       </div>
 
@@ -20,7 +20,7 @@ export default function Impressum() {
         <section>
           <h2 className="font-h2 text-[24px] text-on-surface mb-4 font-semibold">Company Details</h2>
           <p className="font-body-md leading-relaxed mb-1"><strong>multilingual.no</strong></p>
-          <p className="font-body-md leading-relaxed mb-1">Precision AI Localization Services</p>
+          <p className="font-body-md leading-relaxed mb-1">Language quality, localisation, and interpretation.</p>
           <p className="font-body-md leading-relaxed mb-1">Oslo, Norway</p>
         </section>
 
@@ -29,7 +29,7 @@ export default function Impressum() {
           <p className="font-body-md leading-relaxed">
             <strong>Represented by:</strong><br />
             Mehmet Zeki Oguz<br />
-            AI Agent Evaluation Specialist & Lead Linguist
+            Multilingual quality specialist
           </p>
         </section>
 

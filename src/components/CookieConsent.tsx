@@ -1,91 +1,92 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- *
- * Cookie Consent Banner — GDPR (Art. 6, 7) uyumlu çerez rızası.
- * Kullanıcı seçimleri localStorage'da saklanır.
- */
 import { useEffect, useState } from "react";
-import { Cookie, X, Info } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion, useReducedMotion } from "motion/react";
 
-const COOKIE_CONSENT_KEY = "cookie_consent";
-const COOKIE_CONSENT_EXPIRY_DAYS = 365;
+const STORAGE_KEY = "cookie_consent";
+const EXPIRY_DAYS = 365;
+
+const copy = {
+  title: "We use cookies",
+  body: "This site uses cookies to remember your preferences and to understand how the site is used. We do not collect personal data for that without your consent. You can change this later by clearing site data in your browser settings. Read the",
+  privacy: "Privacy Policy",
+  accept: "Accept",
+  reject: "Reject",
+  close: "Close cookie notice",
+};
 
 export default function CookieConsent() {
-  const [consent, setConsent] = useState<string | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const reduce = useReducedMotion();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    // localStorage'dan mevcut rızayı yükle
-    const savedConsent = localStorage.getItem(COOKIE_CONSENT_KEY);
-    if (savedConsent) {
-      setConsent(savedConsent);
-    } else {
-      setIsVisible(true);
-    }
+    if (!localStorage.getItem(STORAGE_KEY)) setOpen(true);
   }, []);
 
-  const handleConsent = (choice: "accept" | "reject") => {
-    const expiryDate = new Date();
-    expiryDate.setDate(expiryDate.getDate() + COOKIE_CONSENT_EXPIRY_DAYS);
-    
+  const save = (choice: "accept" | "reject") => {
+    const expiry = new Date();
+    expiry.setDate(expiry.getDate() + EXPIRY_DAYS);
     localStorage.setItem(
-      COOKIE_CONSENT_KEY,
+      STORAGE_KEY,
       JSON.stringify({
         choice,
         timestamp: new Date().toISOString(),
-        expiry: expiryDate.toISOString(),
-      })
+        expiry: expiry.toISOString(),
+      }),
     );
-    setConsent(choice);
-    setIsVisible(false);
+    setOpen(false);
   };
 
-  if (!isVisible || consent) return null;
+  if (!open) return null;
+
+  const panel = (
+    <div
+      role="dialog"
+      aria-labelledby="cookie-title"
+      aria-describedby="cookie-body"
+      lang="en"
+      className="border border-outline-variant bg-surface-container p-5 text-on-surface shadow-lg"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <h2 id="cookie-title" className="font-display text-2xl tracking-tight">
+          {copy.title}
+        </h2>
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="shrink-0 text-sm text-on-surface-variant hover:text-on-surface"
+          aria-label={copy.close}
+        >
+          Close
+        </button>
+      </div>
+      <p id="cookie-body" className="mt-3 text-sm leading-relaxed text-on-surface-variant">
+        {copy.body}{" "}
+        <Link to="/privacy-policy" className="whitespace-nowrap text-primary underline">
+          {copy.privacy}
+        </Link>
+        .
+      </p>
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+        <button type="button" onClick={() => save("accept")} className="inline-flex min-h-11 items-center justify-center bg-primary px-5 text-sm font-medium text-on-primary hover:bg-primary-container">
+          {copy.accept}
+        </button>
+        <button type="button" onClick={() => save("reject")} className="inline-flex min-h-11 items-center justify-center border border-outline px-5 text-sm font-medium text-on-surface hover:bg-surface-container-high">
+          {copy.reject}
+        </button>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 max-w-sm w-full bg-surface-container p-md rounded-lg shadow-lg border border-outline-variant">
-      <div className="flex items-start gap-sm">
-        <Cookie size={24} className="text-primary flex-shrink-0 mt-xs" />
-        <div className="flex-1">
-          <h3 className="font-button text-on-surface flex items-center gap-2">
-            Çerezleri Kullanıyoruz
-            <Link
-              to="/privacy-policy"
-              className="text-primary hover:underline flex items-center gap-1 text-xs"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Info size={12} /> Detaylar
-            </Link>
-          </h3>
-          <p className="font-body-xs text-on-surface-variant mt-xs">
-            Bu web sitesi, deneyiminizi kişiselleştirmek ve analizler yapmak için çerezleri kullanır.
-            Rızanız olmadan hiçbir kişisel veri toplanmaz.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-sm mt-sm">
-            <button
-              onClick={() => handleConsent("accept")}
-              className="inline-flex items-center justify-center gap-2 px-sm py-xs rounded-md bg-primary text-on-primary font-button hover:bg-primary-container transition-colors"
-            >
-              Kabul Et
-            </button>
-            <button
-              onClick={() => handleConsent("reject")}
-              className="inline-flex items-center justify-center gap-2 px-sm py-xs rounded-md bg-surface-container-high text-on-surface font-button hover:bg-surface-container-highest transition-colors"
-            >
-              Reddet
-            </button>
-          </div>
-        </div>
-        <button
-          onClick={() => setIsVisible(false)}
-          className="text-on-surface-variant hover:text-on-surface transition-colors p-xs -mt-xs -mr-xs"
-          aria-label="Banner'ı kapat"
-        >
-          <X size={16} />
-        </button>
+    <div className="fixed inset-x-0 bottom-0 z-50 p-4 md:p-6">
+      <div className="mx-auto max-w-xl">
+        {reduce ? (
+          panel
+        ) : (
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>
+            {panel}
+          </motion.div>
+        )}
       </div>
     </div>
   );

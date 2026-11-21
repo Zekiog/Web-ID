@@ -8,7 +8,18 @@ const links = [
   { to: "/ai-qa-service", label: "AI review", path: "/ai-qa-service" },
   { to: "/#process", label: "Process" },
   { to: "/#about", label: "About" },
+  { to: "/cv", label: "CV", path: "/cv" },
 ];
+
+function cvHost() {
+  return window.location.hostname === "cv.multilingual.no";
+}
+
+function hrefFor(to: string) {
+  if (!cvHost() || to === "/cv") return to;
+  if (to.startsWith("/#")) return `https://www.multilingual.no/${to.slice(1)}`;
+  return `https://www.multilingual.no${to}`;
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -51,24 +62,35 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-outline-variant/80 bg-background/95 backdrop-blur-md">
       <nav aria-label="Primary" className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 md:px-8">
-        <Link to="/" className="flex items-center gap-3" aria-label="Web-ID, home">
-          <img src="/logo.webp" alt="" width={192} height={192} className="h-9 w-9" />
-          <span className="font-display text-2xl tracking-tight text-on-surface">Web-ID</span>
-        </Link>
+        {cvHost() ? (
+          <a href="https://www.multilingual.no/" className="flex items-center gap-3" aria-label="Web-ID, home">
+            <img src="/logo.webp" alt="" width={192} height={192} className="h-9 w-9" />
+            <span className="font-display text-2xl tracking-tight text-on-surface">Web-ID</span>
+          </a>
+        ) : (
+          <Link to="/" className="flex items-center gap-3" aria-label="Web-ID, home">
+            <img src="/logo.webp" alt="" width={192} height={192} className="h-9 w-9" />
+            <span className="font-display text-2xl tracking-tight text-on-surface">Web-ID</span>
+          </Link>
+        )}
 
         <div className="hidden items-center gap-1 md:flex">
-          {links.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              aria-current={link.path && pathname === link.path ? "page" : undefined}
-              className={`px-3 py-2 text-sm hover:text-on-surface ${
-                link.path && pathname === link.path ? "text-primary" : "text-on-surface-variant"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const href = hrefFor(link.to);
+            const className = `px-3 py-2 text-sm hover:text-on-surface ${
+              link.path && pathname === link.path ? "text-primary" : "text-on-surface-variant"
+            }`;
+            const current = link.path && pathname === link.path ? "page" : undefined;
+            return href.startsWith("http") ? (
+              <a key={link.to} href={href} className={className}>
+                {link.label}
+              </a>
+            ) : (
+              <Link key={link.to} to={href} aria-current={current} className={className}>
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
         <div className="flex items-center gap-2">
@@ -104,16 +126,19 @@ export default function Navbar() {
           className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-background px-5 py-6 md:hidden"
         >
           <div className="flex flex-col">
-            {links.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="border-b border-outline-variant py-4 font-display text-3xl text-on-surface"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {links.map((link) => {
+              const href = hrefFor(link.to);
+              const className = "border-b border-outline-variant py-4 font-display text-3xl text-on-surface";
+              return href.startsWith("http") ? (
+                <a key={link.to} href={href} className={className} onClick={() => setOpen(false)}>
+                  {link.label}
+                </a>
+              ) : (
+                <Link key={link.to} to={href} className={className} onClick={() => setOpen(false)}>
+                  {link.label}
+                </Link>
+              );
+            })}
             <Link
               to="/request-services"
               className="py-4 font-display text-3xl text-primary"
