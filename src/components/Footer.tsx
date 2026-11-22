@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { container, kicker } from "../lib/classes";
+import { isCvDomain, resolveCrossDomainHref } from "../lib/domain";
 
 const pageLinks = [
   { to: "/", label: "Home" },
@@ -16,44 +17,66 @@ const legalLinks = [
 ];
 
 export default function Footer() {
+  const cvHost = isCvDomain();
+
   return (
     <footer className="border-t border-outline-variant bg-background">
       <div className={`${container} grid gap-12 py-16 md:grid-cols-12`}>
         <div className="md:col-span-5">
           <p className="font-display text-4xl text-on-surface">Web-ID</p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-on-surface-variant">
-            Language quality in Norwegian, Turkish, and English. Oslo, Norway.
+            Language quality in Norwegian, Turkish, and English. Trondheim · Oslo & Remote.
           </p>
         </div>
         <nav aria-label="Footer" className="grid gap-10 sm:grid-cols-2 md:col-span-7">
           <div>
             <p className={kicker}>Pages</p>
             <ul className="mt-4 space-y-2">
-              {pageLinks.map((link) => (
-                <li key={link.to}>
-                  <Link to={link.to} className="text-sm text-on-surface hover:text-primary">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {pageLinks.map((link) => {
+                const href = resolveCrossDomainHref(link.to);
+
+                return (
+                  <li key={link.to}>
+                    {href.startsWith("http") ? (
+                      <a href={href} className="text-sm text-on-surface hover:text-primary">
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link to={href} className="text-sm text-on-surface hover:text-primary">
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div>
             <p className={kicker}>Legal</p>
             <ul className="mt-4 space-y-2">
-              {legalLinks.map((link) => (
-                <li key={link.to}>
-                  <Link to={link.to} className="text-sm text-on-surface hover:text-primary">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {legalLinks.map((link) => {
+                const href = resolveCrossDomainHref(link.to);
+
+                return (
+                  <li key={link.to}>
+                    {href.startsWith("http") ? (
+                      <a href={href} className="text-sm text-on-surface hover:text-primary">
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link to={href} className="text-sm text-on-surface hover:text-primary">
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
             <a
-              href="mailto:contact@multilingual.no"
+              href="mailto:zeki@multilingual.no"
               className="mt-5 inline-block text-sm text-primary hover:underline"
             >
-              contact@multilingual.no
+              zeki@multilingual.no
             </a>
           </div>
         </nav>
