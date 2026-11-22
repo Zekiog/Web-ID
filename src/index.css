@@ -45,7 +45,7 @@
   --color-tertiary-fixed: #f0d7a8;
   --color-tertiary-fixed-dim: #e0c48a;
   --color-on-tertiary-fixed: #1c1408;
-  --color-on-tertiary-fixed-variant: #3d3424;
+  --color-on-tertiary-fixed-variant: #3d342c;
   --color-background: #07080d;
   --color-on-background: #f4efe4;
   --color-surface-variant: #1c2130;
@@ -59,7 +59,6 @@
   --spacing-gutter: 24px;
   --spacing-margin-safe: 32px;
 
-  /* Named spacing keys also feed max-w-* unless these are set explicitly. */
   --max-width-xs: 20rem;
   --max-width-sm: 24rem;
   --max-width-md: 28rem;
@@ -105,12 +104,10 @@
 
   --text-body-sm: 14px;
   --text-body-sm--line-height: 1.5;
-  --text-body-sm--letter-spacing: 0;
   --text-body-sm--font-weight: 400;
 
   --text-body-xs: 13px;
   --text-body-xs--line-height: 1.45;
-  --text-body-xs--letter-spacing: 0;
   --text-body-xs--font-weight: 400;
 
   --text-label-caps: 12px;
@@ -181,7 +178,7 @@ section[id] {
   --tw-prose-headings: var(--color-on-surface);
   --tw-prose-bold: var(--color-on-surface);
   --tw-prose-links: var(--color-primary);
-  --tw-prose-bullets: var(--color-primary);
+  --tw-prose-bullets: var(--color-on-surface-variant);
   --tw-prose-counters: var(--color-on-surface-variant);
   --tw-prose-quotes: var(--color-on-surface);
 }
@@ -206,5 +203,23 @@ section[id] {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  nav,
+  footer,
+  .cookie-banner,
+  .no-print {
+    display: none !important;
+  }
+
+  section {
+    page-break-inside: avoid;
   }
 }

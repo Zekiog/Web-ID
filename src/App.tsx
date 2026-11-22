@@ -3,15 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useLenis } from "lenis/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
 import CookieConsent from "./components/CookieConsent";
 import SmoothScroll from "./components/SmoothScroll";
-import Home from "./pages/Home";
+import { isCvDomain } from "./lib/domain";
 
+const Home = lazy(() => import("./pages/Home"));
 const RequestServices = lazy(() => import("./pages/RequestServices"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
@@ -20,11 +21,6 @@ const Impressum = lazy(() => import("./pages/Impressum"));
 const AIQAService = lazy(() => import("./pages/AIQAService"));
 const Cv = lazy(() => import("./pages/Cv"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-
-function AtHome() {
-  if (window.location.hostname === "cv.multilingual.no") return <Cv />;
-  return <Home />;
-}
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -72,37 +68,60 @@ function RouteFallback() {
   );
 }
 
+function Shell({ cvDomain }: { cvDomain: boolean }) {
+  return (
+    <>
+      <ScrollToTop />
+      <div className="flex min-h-screen flex-col bg-background">
+        <a href="#content" className="skip-link">
+          Skip to content
+        </a>
+        <Navbar />
+        <div className="min-h-svh flex-grow" id="content">
+          <ErrorBoundary>
+            <Suspense fallback={<RouteFallback />}>
+              <Routes>
+                {cvDomain ? (
+                  <>
+                    <Route path="/" element={<Cv />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </>
+                ) : (
+                  <>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/cv" element={<Cv />} />
+                    <Route path="/request-services" element={<RequestServices />} />
+                    <Route path="/ai-qa-service" element={<AIQAService />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/terms-of-service" element={<TermsOfService />} />
+                    <Route path="/cookie-policy" element={<CookiePolicy />} />
+                    <Route path="/impressum" element={<Impressum />} />
+                    <Route path="*" element={<NotFound />} />
+                  </>
+                )}
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
+        </div>
+        <Footer />
+        <CookieConsent />
+      </div>
+    </>
+  );
+}
+
 export default function App() {
+  const cvDomain = isCvDomain();
+
   return (
     <BrowserRouter>
-      <SmoothScroll>
-        <ScrollToTop />
-        <div className="flex min-h-screen flex-col bg-background">
-          <a href="#content" className="skip-link">
-            Skip to content
-          </a>
-          <Navbar />
-          <div className="min-h-svh flex-grow" id="content">
-            <ErrorBoundary>
-              <Suspense fallback={<RouteFallback />}>
-                <Routes>
-                  <Route path="/" element={<AtHome />} />
-                  <Route path="/cv" element={<Cv />} />
-                  <Route path="/request-services" element={<RequestServices />} />
-                  <Route path="/ai-qa-service" element={<AIQAService />} />
-                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                  <Route path="/terms-of-service" element={<TermsOfService />} />
-                  <Route path="/cookie-policy" element={<CookiePolicy />} />
-                  <Route path="/impressum" element={<Impressum />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Suspense>
-            </ErrorBoundary>
-          </div>
-          <Footer />
-          <CookieConsent />
-        </div>
-      </SmoothScroll>
+      {cvDomain ? (
+        <Shell cvDomain={cvDomain} />
+      ) : (
+        <SmoothScroll>
+          <Shell cvDomain={cvDomain} />
+        </SmoothScroll>
+      )}
     </BrowserRouter>
   );
 }

@@ -1,0 +1,24 @@
+# Mehmet Zeki Oğuz
+
+Mehmet Zeki Oğuz is a multilingual quality specialist based in Trondheim, Norway. His work focuses on localization, language quality, terminology, interpretation, and AI output evaluation.
+
+## Core expertise
+
+- Multilingual localization QA
+- Language quality assessment
+- Terminology management
+- LLM output evaluation
+- RLHF and AI quality assurance
+- English, Norwegian, and Turkish language services
+
+## Machine-readable CV
+
+A structured, machine-readable resume is available at `/resume.json`.
+
+## Contact
+
+Professional contact: zeki@multilingual.no
+
+## Canonical profile
+
+https://cv.multilingual.no/

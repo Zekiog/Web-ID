@@ -1,10 +1,82 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { container, h2, kicker, lede, panel } from "../lib/classes";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import { usePageTitle } from "../lib/usePageTitle";
 
+type Language = "en" | "no" | "tr";
+type CapabilityTab = "aiqa" | "localization" | "systems";
+
 const site = "https://www.multilingual.no";
+
+const copy = {
+  en: {
+    kicker: "Trondheim · Oslo & Remote",
+    role: "Multilingual quality specialist",
+    intro: "Localisation, terminology, review of model output, and interpretation. Norwegian, Turkish, and English, with further languages below. Open to remote work.",
+    profile: "Profile",
+    profileTitle: "What the work is.",
+    experience: "Experience",
+    experienceTitle: "Roles and dates.",
+    skills: "Skills",
+    skillsTitle: "What I use on a job.",
+    languages: "Languages",
+    languagesTitle: "Seven, with a level on each.",
+    credentials: "Credentials",
+    credentialsTitle: "Named checks already passed.",
+    projects: "Projects",
+    projectsTitle: "Three pieces of work.",
+    contact: "Contact",
+    contactTitle: "Write, or go back to the site.",
+    aiqa: "AI QA",
+    localization: "Localisation",
+    systems: "Systems",
+  },
+  no: {
+    kicker: "Trondheim · Oslo & Remote",
+    role: "Fler språklig kvalitetsspesialist",
+    intro: "Lokalisering, terminologi, gjennomgang av modellresultater og tolking. Norsk, tyrkisk og engelsk, med flere språk nedenfor. Åpen for remote arbeid.",
+    profile: "Profil",
+    profileTitle: "Hva arbeidet består av.",
+    experience: "Arbeidserfaring",
+    experienceTitle: "Roller og datoer.",
+    skills: "Nøkkelkompetanse",
+    skillsTitle: "Det jeg bruker i arbeidet.",
+    languages: "Språkkompetanse",
+    languagesTitle: "Sju språk, med nivå på hvert.",
+    credentials: "Kvalifikasjoner",
+    credentialsTitle: "Navngitte kvalitetskontroller allerede bestått.",
+    projects: "Prosjekter",
+    projectsTitle: "Tre arbeidsområder.",
+    contact: "Kontakt",
+    contactTitle: "Skriv, eller gå tilbake til nettstedet.",
+    aiqa: "AI-kvalitet",
+    localization: "Lokalisering",
+    systems: "Systemer",
+  },
+  tr: {
+    kicker: "Trondheim · Oslo & Remote",
+    role: "Çok dilli kalite uzmanı",
+    intro: "Yerelleştirme, terminoloji, model çıktı değerlendirme ve çeviri. Norveççe, Türkçe ve İngilizce; diğer diller aşağıda. Uzaktan çalışmaya açığım.",
+    profile: "Profil",
+    profileTitle: "İşin kapsamı.",
+    experience: "Deneyim",
+    experienceTitle: "Görevler ve tarihler.",
+    skills: "Nitelikler",
+    skillsTitle: "İşlerde kullandıklarım.",
+    languages: "Diller",
+    languagesTitle: "Yedi dil, her biri için seviye.",
+    credentials: "Sertifikalar",
+    credentialsTitle: "Tamamlanan kalite kontrolleri.",
+    projects: "Projeler",
+    projectsTitle: "Üç çalışma alanı.",
+    contact: "İletişim",
+    contactTitle: "Yazın ya da siteye dönün.",
+    aiqa: "Yapay Zeka Kalitesi",
+    localization: "Yerelleştirme",
+    systems: "Sistemler",
+  },
+} as const;
 
 const roles = [
   {
@@ -51,21 +123,25 @@ const capabilities = [
     title: "Review of model output",
     body: "Rubric-based checks, edge cases, multi-turn behaviour, ranking answers, and naming the failure.",
     tags: ["Rubrics", "Pass/fail", "Traces", "Edge cases"],
+    tab: "aiqa" as CapabilityTab,
   },
   {
     title: "Technical evaluation",
     body: "Modular workflows, whether a prompt reaches the tool, trace review, and the limits of a deployment.",
     tags: ["Workflows", "Reliability", "Prompts", "Architecture"],
+    tab: "systems" as CapabilityTab,
   },
   {
     title: "Delivery",
     body: "Remote asynchronous work, a written record of each change, and GitHub as the place that record is kept.",
     tags: ["Async", "Docs first", "GitHub", "Self-led"],
+    tab: "systems" as CapabilityTab,
   },
   {
     title: "Languages",
     body: "Turkish and Kurdish as native languages, professional Norwegian and English, fluent Swedish, intermediate German, and basic Arabic.",
     tags: ["7 languages", "Localisation"],
+    tab: "localization" as CapabilityTab,
   },
 ];
 
@@ -134,23 +210,86 @@ const projects = [
   },
 ];
 
+const metrics = [
+  ["15+", "Evaluation domains"],
+  ["7", "Languages"],
+  ["4+", "Years in review"],
+  ["100%", "Remote"],
+] as const;
+
 export default function Cv() {
+  const [lang, setLang] = useState<Language>("en");
+  const [tab, setTab] = useState<CapabilityTab>("aiqa");
+  const t = copy[lang];
+
   usePageTitle("Web-ID | Mehmet Zeki Oguz");
+
+  useEffect(() => {
+    const canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    canonical.href = "https://cv.multilingual.no/";
+    document.head.appendChild(canonical);
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Mehmet Zeki Oguz",
+        "url": "https://cv.multilingual.no/",
+        "jobTitle": "Multilingual Quality Specialist",
+        "email": "mailto:zeki@multilingual.no",
+        "knowsLanguage": ["tr", "ku", "nb", "en", "sv", "de", "ar"],
+        "knowsAbout": [
+          "LLM Output Evaluation",
+          "RLHF",
+          "Multilingual Localization QA",
+          "Language Quality",
+          "Terminology",
+          "Interpretation",
+        ],
+      },
+    });
+    document.head.appendChild(script);
+
+    return () => {
+      canonical.remove();
+      script.remove();
+    };
+  }, []);
 
   return (
     <main>
       <header className="border-b border-outline-variant pt-28 pb-16 md:pt-36 md:pb-24">
         <div className={`${container} grid items-end gap-12 md:grid-cols-12`}>
           <div className="md:col-span-7">
-            <p className={kicker}>Trondheim · Remote</p>
+            <p className={kicker}>{t.kicker}</p>
             <h1 className="mt-4 font-display text-[clamp(2.75rem,6vw,5.25rem)] leading-[0.94] tracking-[-0.035em] text-on-surface">
               Mehmet Zeki Oguz
             </h1>
-            <p className="mt-4 text-lg text-primary">Multilingual quality specialist</p>
-            <p className={`${lede} mt-5`}>
-              Localisation, terminology, review of model output, and interpretation. Norwegian,
-              Turkish, and English, with further languages below. Open to remote work.
-            </p>
+            <p className="mt-4 text-lg text-primary">{t.role}</p>
+            <p className={`${lede} mt-5`}>{t.intro}</p>
+
+            <div className="mt-6 flex gap-2">
+              {(["en", "no", "tr"] as Language[]).map((code) => (
+                <button
+                  key={code}
+                  type="button"
+                  onClick={() => setLang(code)}
+                  aria-pressed={lang === code}
+                  className={`min-h-10 border px-3 text-sm uppercase ${
+                    lang === code
+                      ? "border-primary bg-primary text-on-primary"
+                      : "border-outline-variant text-on-surface-variant"
+                  }`}
+                >
+                  {code}
+                </button>
+              ))}
+            </div>
+
             <p className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm">
               <a className="text-primary underline" href={site}>
                 multilingual.no
@@ -169,6 +308,7 @@ export default function Cv() {
               </a>
             </p>
           </div>
+
           <div className="md:col-span-4 md:col-start-9">
             <div className="aspect-[4/5] overflow-hidden border border-outline-variant bg-surface-container">
               <img
@@ -176,6 +316,7 @@ export default function Cv() {
                 alt="Portrait of Mehmet Zeki Oguz"
                 width={1024}
                 height={1024}
+                fetchPriority="high"
                 className="h-full w-full object-cover object-[center_18%]"
               />
             </div>
@@ -183,7 +324,7 @@ export default function Cv() {
         </div>
       </header>
 
-      <Section id="profile" kicker="Profile" title="What the work is.">
+      <Section id="profile" kicker={t.profile} title={t.profileTitle}>
         <div className="grid gap-10 md:grid-cols-12">
           <div className="space-y-4 text-lg leading-relaxed text-on-surface-variant md:col-span-7">
             <p>
@@ -201,13 +342,9 @@ export default function Cv() {
               context, and a record someone else can check.
             </p>
           </div>
+
           <dl className="grid grid-cols-2 gap-6 md:col-span-5">
-            {[
-              ["15+", "Evaluation domains"],
-              ["7", "Languages"],
-              ["4+", "Years in review"],
-              ["100%", "Remote"],
-            ].map(([value, label]) => (
+            {metrics.map(([value, label]) => (
               <div key={label} className="border-t border-outline-variant pt-3">
                 <dt className="font-display text-3xl text-on-surface">{value}</dt>
                 <dd className="mt-1 text-sm text-on-surface-variant">{label}</dd>
@@ -217,7 +354,7 @@ export default function Cv() {
         </div>
       </Section>
 
-      <Section id="experience" kicker="Experience" title="Roles and dates.">
+      <Section id="experience" kicker={t.experience} title={t.experienceTitle}>
         <ol className="space-y-12">
           {roles.map((item) => (
             <li key={item.role} className="grid gap-4 border-t border-outline-variant pt-8 md:grid-cols-12">
@@ -239,22 +376,46 @@ export default function Cv() {
         </ol>
       </Section>
 
-      <Section id="skills" kicker="Skills" title="What I use on a job.">
-        <div className="grid gap-4 md:grid-cols-2">
-          {capabilities.map((item) => (
-            <article key={item.title} className={panel}>
-              <h3 className="font-display text-2xl text-on-surface">{item.title}</h3>
-              <p className="mt-3 leading-relaxed text-on-surface-variant">{item.body}</p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {item.tags.map((tag) => (
-                  <li key={tag} className="border border-outline-variant px-2 py-1 text-xs uppercase tracking-[0.14em] text-on-surface-variant">
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-            </article>
+      <Section id="skills" kicker={t.skills} title={t.skillsTitle}>
+        <div className="flex flex-wrap gap-2">
+          {(["aiqa", "localization", "systems"] as CapabilityTab[]).map((key) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => setTab(key)}
+              aria-pressed={tab === key}
+              className={`min-h-10 border px-4 text-sm ${
+                tab === key
+                  ? "border-primary bg-primary text-on-primary"
+                  : "border-outline-variant text-on-surface-variant"
+              }`}
+            >
+              {t[key]}
+            </button>
           ))}
         </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {capabilities
+            .filter((item) => item.tab === tab)
+            .map((item) => (
+              <article key={item.title} className={panel}>
+                <h3 className="font-display text-2xl text-on-surface">{item.title}</h3>
+                <p className="mt-3 leading-relaxed text-on-surface-variant">{item.body}</p>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="border border-outline-variant px-2 py-1 text-xs uppercase tracking-[0.14em] text-on-surface-variant"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+        </div>
+
         <h3 className="mt-12 font-display text-2xl text-on-surface">Tools and checks</h3>
         <ul className="mt-4 flex flex-wrap gap-2">
           {stack.map((item) => (
@@ -265,7 +426,7 @@ export default function Cv() {
         </ul>
       </Section>
 
-      <Section id="languages" kicker="Languages" title="Seven, with a level on each.">
+      <Section id="languages" kicker={t.languages} title={t.languagesTitle}>
         <ul className="divide-y divide-outline-variant border-y border-outline-variant">
           {languages.map((language) => (
             <li key={language.lang} className="flex items-baseline justify-between gap-6 py-4">
@@ -278,7 +439,7 @@ export default function Cv() {
         </ul>
       </Section>
 
-      <Section id="credentials" kicker="Credentials" title="Named checks already passed.">
+      <Section id="credentials" kicker={t.credentials} title={t.credentialsTitle}>
         <div className="grid gap-8 md:grid-cols-2">
           {credentials.map((group) => (
             <div key={group.name}>
@@ -291,6 +452,7 @@ export default function Cv() {
             </div>
           ))}
         </div>
+
         <h3 className="mt-12 font-display text-2xl text-on-surface">Training</h3>
         <ul className="mt-4 space-y-2 text-on-surface-variant">
           {training.map((item) => (
@@ -299,7 +461,7 @@ export default function Cv() {
         </ul>
       </Section>
 
-      <Section id="projects" kicker="Projects" title="Three pieces of work.">
+      <Section id="projects" kicker={t.projects} title={t.projectsTitle}>
         <div className="grid gap-4 md:grid-cols-3">
           {projects.map((project) => (
             <article key={project.name} className={panel}>
@@ -314,7 +476,7 @@ export default function Cv() {
         </div>
       </Section>
 
-      <Section id="contact" kicker="Contact" title="Write, or go back to the site.">
+      <Section id="contact" kicker={t.contact} title={t.contactTitle}>
         <p className={lede}>
           For a language job, use the request form on{" "}
           <a className="text-primary underline" href={site}>
@@ -359,7 +521,9 @@ function Section({
 function Reveal({ children }: { children: ReactNode }) {
   const reduce = useReducedMotion();
   const narrow = useMediaQuery("(max-width: 767px)");
+
   if (reduce || narrow) return <>{children}</>;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 18 }}

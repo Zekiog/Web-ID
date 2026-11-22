@@ -1,0 +1,35 @@
+{
+  "basics": {
+    "name": "Mehmet Zeki Oğuz",
+    "label": "Multilingual Quality Specialist · AI Evaluation · Localization",
+    "email": "zeki@multilingual.no",
+    "url": "https://cv.multilingual.no/",
+    "location": {
+      "city": "Trondheim",
+      "region": "Trøndelag",
+      "country": "Norway"
+    },
+    "summary": "Multilingual quality specialist focused on localization, language quality, terminology, AI output evaluation, and cross-border communication. Based in Trondheim, Norway."
+  },
+  "work": [],
+  "education": [],
+  "skills": [
+    "Multilingual Localization QA",
+    "Language Quality Assessment",
+    "Terminology Management",
+    "LLM Output Evaluation",
+    "RLHF",
+    "AI Quality Assurance",
+    "Interpretation",
+    "Translation"
+  ],
+  "languages": [
+    { "language": "Turkish", "fluency": "Native" },
+    { "language": "Kurdish", "fluency": "Native" },
+    { "language": "Norwegian", "fluency": "Professional" },
+    { "language": "English", "fluency": "Professional" },
+    { "language": "Swedish", "fluency": "Fluent" },
+    { "language": "German", "fluency": "Intermediate" },
+    { "language": "Arabic", "fluency": "Basic conversational" }
+  ]
+}
